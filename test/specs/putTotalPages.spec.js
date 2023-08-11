@@ -21,9 +21,9 @@ describe("Module: putTotalPages", () => {
   });
 
   it("customfont", () => {
-    var PTSans = loadBinaryResource("reference/PTSans.ttf");
-    var doc = new jsPDF({ filters: ["ASCIIHexEncode"], floatPrecision: 2 });
-    var totalPagesExp = "{totalPages}";
+    let PTSans = loadBinaryResource("reference/PTSans.ttf");
+    let doc = new jsPDF({ filters: ["ASCIIHexEncode"], floatPrecision: 2 });
+    let totalPagesExp = "{totalPages}";
 
     doc.addFileToVFS("PTSans.ttf", PTSans);
     doc.addFont("PTSans.ttf", "PTSans", "normal");
@@ -43,9 +43,9 @@ describe("Module: putTotalPages", () => {
   });
 
   it("customfont with encoding without passing fontWeight", () => {
-    var PTSans = loadBinaryResource("reference/PTSans.ttf");
-    var doc = new jsPDF({ filters: ["ASCIIHexEncode"], floatPrecision: 2 });
-    var totalPagesExp = "{totalPages}";
+    let PTSans = loadBinaryResource("reference/PTSans.ttf");
+    let doc = new jsPDF({ filters: ["ASCIIHexEncode"], floatPrecision: 2 });
+    let totalPagesExp = "{totalPages}";
 
     doc.addFileToVFS("PTSans.ttf", PTSans);
     doc.addFont("PTSans.ttf", "PTSans", "normal", "Identity-H");
@@ -65,9 +65,9 @@ describe("Module: putTotalPages", () => {
   });
 
   it("customfont check without passing fontweight in setfont", () => {
-    var PTSans = loadBinaryResource("reference/PTSans.ttf");
-    var doc = new jsPDF({ filters: ["ASCIIHexEncode"], floatPrecision: 2 });
-    var totalPagesExp = "{totalPages}";
+    let PTSans = loadBinaryResource("reference/PTSans.ttf");
+    let doc = new jsPDF({ filters: ["ASCIIHexEncode"], floatPrecision: 2 });
+    let totalPagesExp = "{totalPages}";
 
     doc.addFileToVFS("PTSans.ttf", PTSans);
     doc.addFont("PTSans.ttf", "PTSans", "normal");
@@ -86,9 +86,9 @@ describe("Module: putTotalPages", () => {
   });
 
   it("customfont with fontweight", () => {
-    var PTSans = loadBinaryResource("reference/PTSans.ttf");
-    var doc = new jsPDF({ filters: ["ASCIIHexEncode"], floatPrecision: 2 });
-    var totalPagesExp = "{totalPages}";
+    let PTSans = loadBinaryResource("reference/PTSans.ttf");
+    let doc = new jsPDF({ filters: ["ASCIIHexEncode"], floatPrecision: 2 });
+    let totalPagesExp = "{totalPages}";
 
     doc.addFileToVFS("PTSans.ttf", PTSans);
     doc.addFont("PTSans.ttf", "PTSans", "normal", 200, "Identity-H");
@@ -107,9 +107,9 @@ describe("Module: putTotalPages", () => {
   });
 
   it("customfont with samevalue in fontweight and fontstyle ", () => {
-    var PTSans = loadBinaryResource("reference/PTSans.ttf");
-    var doc = new jsPDF({ filters: ["ASCIIHexEncode"], floatPrecision: 2 });
-    var totalPagesExp = "{totalPages}";
+    let PTSans = loadBinaryResource("reference/PTSans.ttf");
+    let doc = new jsPDF({ filters: ["ASCIIHexEncode"], floatPrecision: 2 });
+    let totalPagesExp = "{totalPages}";
 
     doc.addFileToVFS("PTSans.ttf", PTSans);
     doc.addFont("PTSans.ttf", "PTSans", "normal", "normal", "Identity-H");
