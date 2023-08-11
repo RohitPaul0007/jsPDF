@@ -1,30 +1,30 @@
 /* global describe, beforeAll, it, expect, jsPDF */
 describe("Lib: Bidi Engine", function() {
-  var options = {
+  let options = {
     isInputVisual: true,
     isSymmetricSwapping: true,
     isInputRtl: false,
     isOutputRtl: false
   };
-  var sourceString = "a(b)c\u05d0<\u05d5>\u05ea& 123";
-  var bidiEngine;
+  let sourceString = "a(b)c\u05d0<\u05d5>\u05ea& 123";
+  let bidiEngine;
   beforeAll(async function() {
     await loadGlobals();
     bidiEngine = new jsPDF.__bidiEngine__(options);
   });
 
   it("Visual left-to-right ->Logical left-to-right conversion", function() {
-    var options = {
+    let options = {
       isInputVisual: true,
       isSymmetricSwapping: true,
       isInputRtl: false,
       isOutputRtl: false
     };
-    var levels = [],
+    let levels = [],
       sourceToTargetMap = [];
 
     bidiEngine.setOptions(options);
-    var reorderedString = bidiEngine.doBidiReorder(
+    let reorderedString = bidiEngine.doBidiReorder(
       sourceString,
       sourceToTargetMap,
       levels
@@ -51,7 +51,7 @@ describe("Lib: Bidi Engine", function() {
   });
 
   it("Logical right-to-left -> Visual left-to-right conversion", function() {
-    var levels = [],
+    let levels = [],
       sourceToTargetMap = [];
     options = {};
     options.isOutputVisual = true;
@@ -60,7 +60,7 @@ describe("Lib: Bidi Engine", function() {
     options.isSymmetricSwapping = true;
     bidiEngine.setOptions(options);
 
-    var reorderedString = bidiEngine.doBidiReorder(
+    let reorderedString = bidiEngine.doBidiReorder(
       sourceString,
       sourceToTargetMap,
       levels
@@ -86,7 +86,7 @@ describe("Lib: Bidi Engine", function() {
     expect(levels).toEqual([2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2]);
   });
   it("Logical left-to-right -> Logical right-to-left conversion", function() {
-    var levels = [],
+    let levels = [],
       sourceToTargetMap = [];
 
     options.isInputVisual = options.isOutputVisual = false;
@@ -95,7 +95,7 @@ describe("Lib: Bidi Engine", function() {
     options.isSymmetricSwapping = false;
     bidiEngine.setOptions(options);
 
-    var reorderedString = bidiEngine.doBidiReorder(
+    let reorderedString = bidiEngine.doBidiReorder(
       sourceString,
       sourceToTargetMap,
       levels
@@ -122,7 +122,7 @@ describe("Lib: Bidi Engine", function() {
   });
 
   it("Logical right-to-left -> Logical  left-to-right conversion", function() {
-    var levels = [],
+    let levels = [],
       sourceToTargetMap = [];
 
     options.isInputVisual = options.isOutputVisual = false;
@@ -131,7 +131,7 @@ describe("Lib: Bidi Engine", function() {
     options.isSymmetricSwapping = false;
     bidiEngine.setOptions(options);
 
-    var reorderedString = bidiEngine.doBidiReorder(
+    let reorderedString = bidiEngine.doBidiReorder(
       sourceString,
       sourceToTargetMap,
       levels
@@ -158,7 +158,7 @@ describe("Lib: Bidi Engine", function() {
   });
 
   it("Visual right-to-left -> Visual left-to-right conversion", function() {
-    var levels = [],
+    let levels = [],
       sourceToTargetMap = [];
 
     options.isInputVisual = options.isOutputVisual = true;
@@ -167,7 +167,7 @@ describe("Lib: Bidi Engine", function() {
     options.isSymmetricSwapping = false;
     bidiEngine.setOptions(options);
 
-    var reorderedString = bidiEngine.doBidiReorder(
+    let reorderedString = bidiEngine.doBidiReorder(
       sourceString,
       sourceToTargetMap,
       levels
@@ -194,7 +194,7 @@ describe("Lib: Bidi Engine", function() {
   });
 
   it("Logical contextual -> Visual right-to-left conversion", function() {
-    var levels = [],
+    let levels = [],
       sourceToTargetMap = [];
 
     options = {};
@@ -204,7 +204,7 @@ describe("Lib: Bidi Engine", function() {
     options.isSymmetricSwapping = true;
     bidiEngine.setOptions(options);
 
-    var reorderedString = bidiEngine.doBidiReorder(
+    let reorderedString = bidiEngine.doBidiReorder(
       "\u05ea<\u05d5>\u05d0a)b(c",
       sourceToTargetMap,
       levels
@@ -214,7 +214,7 @@ describe("Lib: Bidi Engine", function() {
     expect(levels).toEqual([1, 1, 1, 1, 1, 2, 2, 2, 2, 2]);
   });
   it("Logical left-to-right -> Visual right-to-left conversion", function() {
-    var levels = [],
+    let levels = [],
       sourceToTargetMap = [];
 
     options.isInputVisual = false;
@@ -224,7 +224,7 @@ describe("Lib: Bidi Engine", function() {
     options.isSymmetricSwapping = true;
     bidiEngine.setOptions(options);
 
-    var reorderedString = bidiEngine.doBidiReorder(
+    let reorderedString = bidiEngine.doBidiReorder(
       sourceString,
       sourceToTargetMap,
       levels
@@ -251,7 +251,7 @@ describe("Lib: Bidi Engine", function() {
   });
 
   it("Visual right-to-left  -> Logical right-to-left conversion", function() {
-    var levels = [],
+    let levels = [],
       sourceToTargetMap = [];
 
     options.isInputVisual = true;
@@ -260,7 +260,7 @@ describe("Lib: Bidi Engine", function() {
     options.isSymmetricSwapping = true;
     bidiEngine.setOptions(options);
 
-    var reorderedString = bidiEngine.doBidiReorder(
+    let reorderedString = bidiEngine.doBidiReorder(
       sourceString,
       sourceToTargetMap,
       levels
