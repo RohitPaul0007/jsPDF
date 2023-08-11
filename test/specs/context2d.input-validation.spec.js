@@ -1,14 +1,14 @@
 /* global describe, it, expect, jsPDF */
 describe("Module: Context2D Input Validation", () => {
   beforeAll(loadGlobals);
-  var global =
+   let global =
     (typeof self !== "undefined" && self) ||
     (typeof window !== "undefined" && window) ||
     (typeof global !== "undefined" && global) ||
     Function('return typeof this === "object" && this.content')() ||
     Function("return this")();
 
-  var tmpConsoleError = global.console.error;
+  let tmpConsoleError = global.console.error;
 
   beforeEach(function() {
     global.console.error = function() {};
@@ -17,7 +17,7 @@ describe("Module: Context2D Input Validation", () => {
     global.console.error = tmpConsoleError;
   });
   it("context2d: moveTo", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.moveTo(1, 1);
     }).not.toThrow(
@@ -32,7 +32,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: lineTo ", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.lineTo(1, 1);
     }).not.toThrow(
@@ -47,7 +47,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: quadraticCurveTo", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.quadraticCurveTo(1, 1, 1, 1);
     }).not.toThrow(
@@ -76,7 +76,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: bezierCurveTo", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.bezierCurveTo(1, 1, 1, 1, 1, 1);
     }).not.toThrow(
@@ -115,7 +115,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: arc", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.arc(1, 1, 1, 1, 1, 1);
     }).not.toThrow(
@@ -144,7 +144,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: rect", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.rect(1, 1, 1, 1);
     }).not.toThrow(
@@ -165,7 +165,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: fillRect", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.fillRect(1, 1, 1, 1);
     }).not.toThrow(
@@ -194,7 +194,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: strokeRect", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.strokeRect(1, 1, 1, 1);
     }).not.toThrow(
@@ -223,7 +223,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: clearRect", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.clearRect(1, 1, 1, 1);
     }).not.toThrow(
@@ -255,7 +255,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: fillText", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.fillText("valid", 1, 1, 1);
     }).not.toThrow(
@@ -279,7 +279,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: strokeText", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.strokeText("valid", 1, 1, 1);
     }).not.toThrow(
@@ -303,7 +303,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: measureText", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.measureText("valid");
     }).not.toThrow(
@@ -317,7 +317,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: scale", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.scale(1, 1);
     }).not.toThrow(
@@ -332,7 +332,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: rotate", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.rotate(1);
     }).not.toThrow(
@@ -344,7 +344,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: translate", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.translate(1, 1);
     }).not.toThrow(
@@ -363,7 +363,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: transform", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.transform(1, 1, 1, 1, 1, 1);
     }).not.toThrow(
@@ -402,7 +402,7 @@ describe("Module: Context2D Input Validation", () => {
   });
 
   it("context2d: toDataURL", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     expect(function() {
       doc.context2d.toDataURL();
     }).toThrow(new Error("toDataUrl not implemented."));
