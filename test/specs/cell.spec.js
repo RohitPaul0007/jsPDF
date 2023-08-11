@@ -3,7 +3,7 @@
 describe("Module: Cell", () => {
   beforeAll(loadGlobals);
   it("getTextDimensions", () => {
-    var doc = new jsPDF("p", "pt", "a4");
+    let doc = new jsPDF("p", "pt", "a4");
     expect(
       doc.getTextDimensions(doc.splitTextToSize("Octocat loves jsPDF", 50)).w
     ).toEqual(43.35999999999999);
@@ -45,9 +45,9 @@ describe("Module: Cell", () => {
     );
   });
 
-  var generateData = function(amount) {
-    var result = [];
-    var data = {
+  let generateData = function(amount) {
+    let result = [];
+    let data = {
       coin: "100",
       game_group: "GameGroup",
       game_name: "XPTO2",
@@ -55,7 +55,7 @@ describe("Module: Cell", () => {
       machine: "20485861",
       vlt: "0"
     };
-    for (var i = 0; i < amount; i += 1) {
+    for (let i = 0; i < amount; i += 1) {
       result.push(data);
     }
     return result;
@@ -71,7 +71,7 @@ describe("Module: Cell", () => {
     }));
   }
 
-  var headerNames = [
+  let headerNames = [
     "coin",
     "game_group",
     "game_name",
@@ -80,10 +80,10 @@ describe("Module: Cell", () => {
     "vlt"
   ];
 
-  var header = createHeaders(headerNames);
+  let header = createHeaders(headerNames);
 
   it("table with CellConfig[]", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       putOnlyUsedFonts: true,
       orientation: "landscape",
       floatPrecision: 2
@@ -93,7 +93,7 @@ describe("Module: Cell", () => {
   });
 
   it("table with string[] and without autoSize", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       putOnlyUsedFonts: true,
       orientation: "landscape",
       floatPrecision: 2
@@ -103,7 +103,7 @@ describe("Module: Cell", () => {
   });
 
   it("table with string[] and autoSize", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       putOnlyUsedFonts: true,
       orientation: "landscape",
       floatPrecision: 2
@@ -113,7 +113,7 @@ describe("Module: Cell", () => {
   });
 
   it("table-autoSize", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       putOnlyUsedFonts: true,
       orientation: "landscape",
       floatPrecision: 2
@@ -123,7 +123,7 @@ describe("Module: Cell", () => {
   });
 
   it("table-formatted", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       putOnlyUsedFonts: true,
       orientation: "landscape",
       floatPrecision: 2
@@ -148,7 +148,7 @@ describe("Module: Cell", () => {
   });
 
   it("table error handling", () => {
-    var doc = new jsPDF({ putOnlyUsedFonts: true, orientation: "landscape" });
+    let doc = new jsPDF({ putOnlyUsedFonts: true, orientation: "landscape" });
     expect(function() {
       doc.table(1, 1, undefined, header, { autoSize: true });
     }).toThrow(new Error("No data for PDF table."));
