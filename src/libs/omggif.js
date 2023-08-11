@@ -32,17 +32,17 @@
 import { console } from "./console.js";
 
 function GifWriter(buf, width, height, gopts) {
-  var p = 0;
+  let p = 0;
 
-  var gopts = gopts === undefined ? {} : gopts;
-  var loop_count = gopts.loop === undefined ? null : gopts.loop;
-  var global_palette = gopts.palette === undefined ? null : gopts.palette;
+  let gopts = gopts === undefined ? {} : gopts;
+  let loop_count = gopts.loop === undefined ? null : gopts.loop;
+  let global_palette = gopts.palette === undefined ? null : gopts.palette;
 
   if (width <= 0 || height <= 0 || width > 65535 || height > 65535)
     throw new Error("Width/Height invalid.");
 
   function check_palette_and_num_colors(palette) {
-    var num_colors = palette.length;
+    let num_colors = palette.length;
     if (num_colors < 2 || num_colors > 256 || num_colors & (num_colors - 1)) {
       throw new Error(
         "Invalid code/color length, must be power of 2 and 2 .. 256."
@@ -60,10 +60,10 @@ function GifWriter(buf, width, height, gopts) {
   buf[p++] = 0x61; // 89a
 
   // Handling of Global Color Table (palette) and background index.
-  var gp_num_colors_pow2 = 0;
-  var background = 0;
+  let gp_num_colors_pow2 = 0;
+  let background = 0;
   if (global_palette !== null) {
-    var gp_num_colors = check_palette_and_num_colors(global_palette);
+    let gp_num_colors = check_palette_and_num_colors(global_palette);
     while ((gp_num_colors >>= 1)) ++gp_num_colors_pow2;
     gp_num_colors = 1 << gp_num_colors_pow2;
     --gp_num_colors_pow2;
@@ -93,8 +93,8 @@ function GifWriter(buf, width, height, gopts) {
 
   // - Global Color Table
   if (global_palette !== null) {
-    for (var i = 0, il = global_palette.length; i < il; ++i) {
-      var rgb = global_palette[i];
+    for (let i = 0, il = global_palette.length; i < il; ++i) {
+      let rgb = global_palette[i];
       buf[p++] = (rgb >> 16) & 0xff;
       buf[p++] = (rgb >> 8) & 0xff;
       buf[p++] = rgb & 0xff;
@@ -129,7 +129,7 @@ function GifWriter(buf, width, height, gopts) {
     buf[p++] = 0x00; // Terminator.
   }
 
-  var ended = false;
+  let ended = false;
 
   this.addFrame = function(x, y, w, h, indexed_pixels, opts) {
     if (ended === true) {
@@ -150,8 +150,8 @@ function GifWriter(buf, width, height, gopts) {
     if (indexed_pixels.length < w * h)
       throw new Error("Not enough pixels for the frame size.");
 
-    var using_local_palette = true;
-    var palette = opts.palette;
+    let using_local_palette = true;
+    let palette = opts.palette;
     if (palette === undefined || palette === null) {
       using_local_palette = false;
       palette = global_palette;
@@ -160,14 +160,14 @@ function GifWriter(buf, width, height, gopts) {
     if (palette === undefined || palette === null)
       throw new Error("Must supply either a local or global palette.");
 
-    var num_colors = check_palette_and_num_colors(palette);
+    let num_colors = check_palette_and_num_colors(palette);
 
     // Compute the min_code_size (power of 2), destroying num_colors.
-    var min_code_size = 0;
+    let min_code_size = 0;
     while ((num_colors >>= 1)) ++min_code_size;
     num_colors = 1 << min_code_size; // Now we can easily get it back.
 
-    var delay = opts.delay === undefined ? 0 : opts.delay;
+    let delay = opts.delay === undefined ? 0 : opts.delay;
 
     // From the spec:
     //     0 -   No disposal specified. The decoder is
@@ -182,13 +182,13 @@ function GifWriter(buf, width, height, gopts) {
     //  4-7 -    To be defined.
     // NOTE(deanm): Dispose background doesn't really work, apparently most
     // browsers ignore the background palette index and clear to transparency.
-    var disposal = opts.disposal === undefined ? 0 : opts.disposal;
+    let disposal = opts.disposal === undefined ? 0 : opts.disposal;
     if (disposal < 0 || disposal > 3)
       // 4-7 is reserved.
       throw new Error("Disposal out of range.");
 
-    var use_transparency = false;
-    var transparent_index = 0;
+    let use_transparency = false;
+    let transparent_index = 0;
     if (opts.transparent !== undefined && opts.transparent !== null) {
       use_transparency = true;
       transparent_index = opts.transparent;
@@ -225,7 +225,7 @@ function GifWriter(buf, width, height, gopts) {
 
     // - Local Color Table
     if (using_local_palette === true) {
-      for (var i = 0, il = palette.length; i < il; ++i) {
+      for (let i = 0, il = palette.length; i < il; ++i) {
         var rgb = palette[i];
         buf[p++] = (rgb >> 16) & 0xff;
         buf[p++] = (rgb >> 8) & 0xff;
@@ -271,16 +271,16 @@ function GifWriterOutputLZWCodeStream(buf, p, min_code_size, index_stream) {
   buf[p++] = min_code_size;
   var cur_subblock = p++; // Pointing at the length field.
 
-  var clear_code = 1 << min_code_size;
-  var code_mask = clear_code - 1;
-  var eoi_code = clear_code + 1;
-  var next_code = eoi_code + 1;
+  let clear_code = 1 << min_code_size;
+  let code_mask = clear_code - 1;
+  let eoi_code = clear_code + 1;
+  let next_code = eoi_code + 1;
 
-  var cur_code_size = min_code_size + 1; // Number of bits per code.
-  var cur_shift = 0;
+  let cur_code_size = min_code_size + 1; // Number of bits per code.
+  let cur_shift = 0;
   // We have at most 12-bit codes, so we should have to hold a max of 19
   // bits here (and then we would write out).
-  var cur = 0;
+  let cur = 0;
 
   function emit_bytes_to_buffer(bit_block_size) {
     while (cur_shift >= bit_block_size) {
@@ -339,16 +339,16 @@ function GifWriterOutputLZWCodeStream(buf, p, min_code_size, index_stream) {
   // fit in an SMI value and be used as a fast sparse array / object key.
 
   // Output code for the current contents of the index buffer.
-  var ib_code = index_stream[0] & code_mask; // Load first input index.
-  var code_table = {}; // Key'd on our 20-bit "tuple".
+  let ib_code = index_stream[0] & code_mask; // Load first input index.
+  let code_table = {}; // Key'd on our 20-bit "tuple".
 
   emit_code(clear_code); // Spec says first code should be a clear code.
 
   // First index already loaded, process the rest of the stream.
-  for (var i = 1, il = index_stream.length; i < il; ++i) {
-    var k = index_stream[i] & code_mask;
-    var cur_key = (ib_code << 8) | k; // (prev, k) unique tuple.
-    var cur_code = code_table[cur_key]; // buffer + k.
+  for (let i = 1, il = index_stream.length; i < il; ++i) {
+    let k = index_stream[i] & code_mask;
+    let cur_key = (ib_code << 8) | k; // (prev, k) unique tuple.
+    let cur_code = code_table[cur_key]; // buffer + k.
 
     // Check if we have to create a new code table entry.
     if (cur_code === undefined) {
@@ -418,7 +418,7 @@ function GifWriterOutputLZWCodeStream(buf, p, min_code_size, index_stream) {
 }
 
 function GifReader(buf) {
-  var p = 0;
+  let p = 0;
 
   // - Header (GIF87a or GIF89a).
   if (
@@ -433,17 +433,17 @@ function GifReader(buf) {
   }
 
   // - Logical Screen Descriptor.
-  var width = buf[p++] | (buf[p++] << 8);
-  var height = buf[p++] | (buf[p++] << 8);
-  var pf0 = buf[p++]; // <Packed Fields>.
-  var global_palette_flag = pf0 >> 7;
-  var num_global_colors_pow2 = pf0 & 0x7;
-  var num_global_colors = 1 << (num_global_colors_pow2 + 1);
-  var background = buf[p++];
+  let width = buf[p++] | (buf[p++] << 8);
+  let height = buf[p++] | (buf[p++] << 8);
+  let pf0 = buf[p++]; // <Packed Fields>.
+  let global_palette_flag = pf0 >> 7;
+  let num_global_colors_pow2 = pf0 & 0x7;
+  let num_global_colors = 1 << (num_global_colors_pow2 + 1);
+  let background = buf[p++];
   buf[p++]; // Pixel aspect ratio (unused?).
 
-  var global_palette_offset = null;
-  var global_palette_size = null;
+  let global_palette_offset = null;
+  let global_palette_size = null;
 
   if (global_palette_flag) {
     global_palette_offset = p;
@@ -451,14 +451,14 @@ function GifReader(buf) {
     p += num_global_colors * 3; // Seek past palette.
   }
 
-  var no_eof = true;
+  let no_eof = true;
 
-  var frames = [];
+  let frames = [];
 
-  var delay = 0;
-  var transparent_index = null;
-  var disposal = 0; // 0 - No disposal specified.
-  var loop_count = null;
+  let delay = 0;
+  let transparent_index = null;
+  let disposal = 0; // 0 - No disposal specified.
+  let loop_count = null;
 
   this.width = width;
   this.height = height;
