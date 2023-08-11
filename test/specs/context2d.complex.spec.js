@@ -6,12 +6,12 @@
 describe("Module: Context2D Complex Examples", () => {
   beforeAll(loadGlobals);
   it("context2d: smiley", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "portrait",
       unit: "pt",
       floatPrecision: 3
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
 
     ctx.beginPath();
     ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // Outer circle
@@ -27,21 +27,21 @@ describe("Module: Context2D Complex Examples", () => {
 
   //http://www.williammalone.com/articles/html5-canvas-example/
   it("context2d: warnsign", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "portrait",
       unit: "pt",
       floatPrecision: 3
     });
-    var context = doc.context2d;
+    let context = doc.context2d;
 
-    var primaryColor = "#ffc821";
-    var secondaryColor = "black";
-    var tertiaryColor = "black";
-    var lineWidth = 10;
+    let primaryColor = "#ffc821";
+    let secondaryColor = "black";
+    let tertiaryColor = "black";
+    let lineWidth = 10;
     // Dimensions of the triangle
-    var width = 125;
-    var height = 100;
-    var padding = 20;
+    let width = 125;
+    let height = 100;
+    let padding = 20;
 
     // Create a triangluar path
     context.beginPath();
@@ -51,7 +51,7 @@ describe("Module: Context2D Complex Examples", () => {
     context.closePath();
 
     // Create fill gradient
-    var gradient = context.createLinearGradient(0, 0, 0, height);
+    let gradient = context.createLinearGradient(0, 0, 0, height);
     gradient.addColorStop(0, primaryColor);
     gradient.addColorStop(1, secondaryColor);
 
@@ -106,34 +106,34 @@ describe("Module: Context2D Complex Examples", () => {
   }
   //http://curran.github.io/HTML5Examples/canvas/sierpinskiTriangle/index.html
   it("context2d: sierpinski", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "portrait",
       unit: "pt",
       floatPrecision: 3
     });
-    var c = doc.context2d;
+    let c = doc.context2d;
 
-    var width = 400;
-    var height = 300;
-    var centerX = width / 2;
+    let width = 400;
+    let height = 300;
+    let centerX = width / 2;
 
-    var x1 = centerX;
-    var y1 = 0;
-    var x2 = width;
-    var y2 = height;
-    var x3 = 0;
-    var y3 = height;
-    var depth = 6;
+    let x1 = centerX;
+    let y1 = 0;
+    let x2 = width;
+    let y2 = height;
+    let x3 = 0;
+    let y3 = height;
+    let depth = 6;
 
     function sierpinski(x1, y1, x2, y2, x3, y3, depth) {
       if (depth == 0) drawTriangle(x1, y1, x2, y2, x3, y3);
       else {
-        var x12 = (x1 + x2) / 2;
-        var y12 = (y1 + y2) / 2;
-        var x13 = (x1 + x3) / 2;
-        var y13 = (y1 + y3) / 2;
-        var x23 = (x2 + x3) / 2;
-        var y23 = (y2 + y3) / 2;
+        let x12 = (x1 + x2) / 2;
+        let y12 = (y1 + y2) / 2;
+        let x13 = (x1 + x3) / 2;
+        let y13 = (y1 + y3) / 2;
+        let x23 = (x2 + x3) / 2;
+        let y23 = (y2 + y3) / 2;
 
         sierpinski(x1, y1, x12, y12, x13, y13, depth - 1);
         sierpinski(x12, y12, x2, y2, x23, y23, depth - 1);
@@ -156,9 +156,9 @@ describe("Module: Context2D Complex Examples", () => {
 
   //https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Compositing#A_clip_example
   xit("context2d: stars", () => {
-    var doc = new jsPDF("p", "pt", "a4");
+    let doc = new jsPDF("p", "pt", "a4");
 
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
     ctx.fillRect(0, 0, 150, 150);
     ctx.translate(75, 75);
 
@@ -168,7 +168,7 @@ describe("Module: Context2D Complex Examples", () => {
     ctx.clip();
 
     // draw background
-    var lingrad = ctx.createLinearGradient(0, -75, 0, 75);
+    let lingrad = ctx.createLinearGradient(0, -75, 0, 75);
     lingrad.addColorStop(0, "#232256");
     lingrad.addColorStop(1, "#143778");
 
@@ -176,7 +176,7 @@ describe("Module: Context2D Complex Examples", () => {
     ctx.fillRect(-75, -75, 150, 150);
 
     // draw stars
-    for (var j = 1; j < 50; j++) {
+    for (let j = 1; j < 50; j++) {
       ctx.save();
       ctx.fillStyle = "#fff";
       ctx.translate(
@@ -191,7 +191,7 @@ describe("Module: Context2D Complex Examples", () => {
       ctx.save();
       ctx.beginPath();
       ctx.moveTo(r, 0);
-      for (var i = 0; i < 9; i++) {
+      for (let i = 0; i < 9; i++) {
         ctx.rotate(Math.PI / 5);
         if (i % 2 === 0) {
           ctx.lineTo((r / 0.525731) * 0.200811, 0);
