@@ -73,7 +73,7 @@ describe("Module: Annotations", () => {
     comparePdf(doc.output(), "insertLinkAddPage.pdf", "annotations");
   });
   it("should add a multline link to the page", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       floatPrecision: 2
     });
 
@@ -85,7 +85,7 @@ describe("Module: Annotations", () => {
     comparePdf(doc.output(), "multiLineLinkWithText.pdf", "annotations");
   });
   it("should align text link based on the align option", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       unit: "px",
       format: [200, 300],
       floatPrecision: 2
