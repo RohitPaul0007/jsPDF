@@ -10,17 +10,17 @@ describe("Context2D: standard tests", () => {
       const svg = loadBinaryResource(
         "reference/bar_graph_with_text_and_lines.svg"
       );
-      var doc = new jsPDF({
+      let doc = new jsPDF({
         orientation: "p",
         unit: "pt",
         format: "c1",
         floatPrecision: 3
       });
-      var c = doc.canvas;
+      let c = doc.canvas;
       c.width = 1000;
       c.height = 500;
 
-      var ctx = c.getContext("2d");
+      let ctx = c.getContext("2d");
       ctx.ignoreClearRect = true;
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, 1000, 700);
@@ -42,17 +42,17 @@ describe("Context2D: standard tests", () => {
 
     it("piechart - direct svg", async () => {
       const svg = loadBinaryResource("reference/piechart.svg");
-      var doc = new jsPDF({
+      let doc = new jsPDF({
         orientation: "p",
         unit: "pt",
         format: "c1",
         floatPrecision: 3
       });
-      var c = doc.canvas;
+      let c = doc.canvas;
       c.width = 1000;
       c.height = 500;
 
-      var ctx = c.getContext("2d");
+      let ctx = c.getContext("2d");
       ctx.ignoreClearRect = true;
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, 1000, 700);
@@ -71,13 +71,13 @@ describe("Context2D: standard tests", () => {
   }
 
   it("context2d: paths", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "letter",
       floatPrecision: 2
     });
-    var context = doc.context2d;
+    let context = doc.context2d;
 
     context.arc(150, 150, 50, 0, Math.PI, false);
     context.lineTo(300, 300);
@@ -90,17 +90,17 @@ describe("Context2D: standard tests", () => {
   });
 
   it("context2d: fonts", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
 
-    var ctx = doc.context2d;
-    var y = 0;
-    var pad = 10;
-    var textHeight = 20;
+    let ctx = doc.context2d;
+    let y = 0;
+    let pad = 10;
+    let textHeight = 20;
 
     ctx.font = "10pt times";
     ctx.fillText("10pt times", 20, y + textHeight);
@@ -146,9 +146,9 @@ describe("Context2D: standard tests", () => {
   });
 
   it("context2d: custom fonts", () => {
-    var PTSans = loadBinaryResource("reference/PTSans.ttf");
+    let PTSans = loadBinaryResource("reference/PTSans.ttf");
 
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
@@ -157,7 +157,7 @@ describe("Context2D: standard tests", () => {
     doc.addFileToVFS("PTSans.ttf", PTSans);
     doc.addFont("PTSans.ttf", "PTSans", "normal");
 
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
     ctx.font = "normal 16pt PTSans";
     ctx.fillText("А ну чики брики и в дамки!", 20, 20);
 
@@ -165,17 +165,17 @@ describe("Context2D: standard tests", () => {
   });
 
   it("context2d: css color names", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
 
-    var y = 0;
-    var pad = 10;
-    var textHeight = 20;
+    let y = 0;
+    let pad = 10;
+    let textHeight = 20;
     ctx.font = "20pt times";
 
     ctx.save();
