@@ -132,8 +132,8 @@ break`
     doc.setTextColor("#FF0000");
     doc.setFontSize(20);
     doc.text("Red", 20, 20);
-    var previousColor = doc.internal.getTextColor();
-    var previousSize = doc.internal.getFontSize();
+    let previousColor = doc.internal.getTextColor();
+    let previousSize = doc.internal.getFontSize();
     doc.setTextColor("#000000");
     doc.setFontSize(10);
     doc.text("Black", 20, 40);
@@ -144,8 +144,8 @@ break`
     doc.setTextColor(200);
     doc.setFont(undefined, "bold");
     doc.text("Bold Gray", 20, 80);
-    var previousColor = doc.internal.getTextColor();
-    var previousStyle = doc.internal.getFont()["fontStyle"];
+    let previousColor = doc.internal.getTextColor();
+    let previousStyle = doc.internal.getFont()["fontStyle"];
     doc.setTextColor(155);
     doc.setFont(undefined, "italic");
     doc.text("Italic Dark Gray", 20, 100);
@@ -177,7 +177,7 @@ break`
 
   it("should justify custom font", () => {
     const doc = jsPDF({ floatPrecision: 2 });
-    var PTSans;
+    let PTSans;
     if (typeof global === "object" && global.isNode === true) {
       PTSans = doc.loadFile("./test/reference/PTSans.ttf");
     } else {
