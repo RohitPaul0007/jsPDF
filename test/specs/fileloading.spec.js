@@ -2,19 +2,19 @@
 
 describe("Module: FileLoad", () => {
   beforeAll(loadGlobals);
-  var successURL =
+  let successURL =
     typeof isNode !== "undefined" && isNode
       ? "./test/reference/success.txt"
       : "/base/test/reference/success.txt";
   it("should load a file (sync)", () => {
     const doc = jsPDF();
-    var file = doc.loadFile(successURL, undefined, undefined);
+    let file = doc.loadFile(successURL, undefined, undefined);
     expect(file).toEqual("success");
   });
 
   it("should fail to load a file (sync)", () => {
     const doc = jsPDF();
-    var file = doc.loadFile("fail.txt", undefined, undefined);
+    let file = doc.loadFile("fail.txt", undefined, undefined);
     expect(file).toEqual(undefined);
   });
 
