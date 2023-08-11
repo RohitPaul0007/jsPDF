@@ -1,4 +1,4 @@
-var configuration = {
+let configuration = {
   license: {
     name: "License",
     folder: "",
