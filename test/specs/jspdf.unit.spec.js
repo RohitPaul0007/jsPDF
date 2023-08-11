@@ -8,7 +8,7 @@
 
 describe("Core: Unit Tests", () => {
   beforeAll(loadGlobals);
-  var global =
+  let global =
     (typeof self !== "undefined" && self) ||
     (typeof window !== "undefined" && window) ||
     (typeof global !== "undefined" && global) ||
@@ -32,9 +32,9 @@ describe("Core: Unit Tests", () => {
       "function"
     );
 
-    var pubSub;
-    var testContext = {};
-    var token;
+    let pubSub;
+    let testContext = {};
+    let token;
     pubSub = new new jsPDF({ floatPrecision: 2 }).__private__.PubSub(
       testContext
     );
@@ -100,17 +100,17 @@ describe("Core: Unit Tests", () => {
 
   //PubSub-Functionality
   it("jsPDF PubSub publish", () => {
-    var pubSub;
-    var testContext = {
+    let pubSub;
+    let testContext = {
       success: false,
       testFunction: function() {
         this.success = true;
       },
       malFunction: null
     };
-    var token;
-    var originalConsole = console.error;
-    var tmpErrorMessage = "";
+    let token;
+    let originalConsole = console.error;
+    let tmpErrorMessage = "";
 
     console.error = function(value) {
       tmpErrorMessage = value;
@@ -233,13 +233,13 @@ describe("Core: Unit Tests", () => {
 
   it("jsPDF private function getCreationDate", () => {
     const doc = jsPDF({ floatPrecision: 2 });
-    var regexPDFCreationDate = /^D:(20[0-2][0-9]|203[0-7]|19[7-9][0-9])(0[0-9]|1[0-2])([0-2][0-9]|3[0-1])(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-5][0-9])(0[0-9]|[1-5][0-9])(\+0[0-9]|\+1[0-4]|\-0[0-9]|\-1[0-1])\'(0[0-9]|[1-5][0-9])\'?$/;
+    let regexPDFCreationDate = /^D:(20[0-2][0-9]|203[0-7]|19[7-9][0-9])(0[0-9]|1[0-2])([0-2][0-9]|3[0-1])(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-5][0-9])(0[0-9]|[1-5][0-9])(\+0[0-9]|\+1[0-4]|\-0[0-9]|\-1[0-1])\'(0[0-9]|[1-5][0-9])\'?$/;
 
     expect(
       regexPDFCreationDate.test(doc.__private__.setCreationDate())
     ).toEqual(true);
 
-    var creationDate = new Date();
+    let creationDate = new Date();
     doc.__private__.setCreationDate(creationDate);
     expect(doc.__private__.getCreationDate("jsDate").getFullYear()).toEqual(
       creationDate.getFullYear()
@@ -263,8 +263,8 @@ describe("Core: Unit Tests", () => {
 
   it("jsPDF private function setCreationDate", () => {
     const doc = jsPDF({ floatPrecision: 2 });
-    var creationDate = new Date(1987, 11, 10, 0, 0, 0);
-    var pdfDateString = "D:19871210000000+00'00'";
+    let creationDate = new Date(1987, 11, 10, 0, 0, 0);
+    let pdfDateString = "D:19871210000000+00'00'";
     doc.__private__.setCreationDate(pdfDateString);
     expect(doc.__private__.getCreationDate("jsDate").getFullYear()).toEqual(
       creationDate.getFullYear()
@@ -292,7 +292,7 @@ describe("Core: Unit Tests", () => {
 
   it("jsPDF public function getCreationDate", () => {
     const doc = jsPDF({ floatPrecision: 2 });
-    var creationDate = new Date();
+    let creationDate = new Date();
     doc.setCreationDate(creationDate);
     expect(doc.getCreationDate("jsDate").getFullYear()).toEqual(
       creationDate.getFullYear()
@@ -316,8 +316,8 @@ describe("Core: Unit Tests", () => {
 
   it("jsPDF public function setCreationDate", () => {
     const doc = jsPDF({ floatPrecision: 2 });
-    var creationDate = new Date(1987, 11, 10, 0, 0, 0);
-    var pdfDateString = "D:19871210000000+00'00'";
+    let creationDate = new Date(1987, 11, 10, 0, 0, 0);
+    let pdfDateString = "D:19871210000000+00'00'";
     doc.setCreationDate(pdfDateString);
     expect(doc.getCreationDate("jsDate").getFullYear()).toEqual(
       creationDate.getFullYear()
@@ -354,7 +354,7 @@ describe("Core: Unit Tests", () => {
   });
 
   it("jsPDF private function getFilters", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
+    let doc = jsPDF({ floatPrecision: 2 });
     expect(doc.__private__.getFilters()).toEqual([]);
     doc = jsPDF({ filters: "FlateEncode" });
     expect(doc.__private__.getFilters()).toEqual("FlateEncode");
@@ -393,7 +393,7 @@ describe("Core: Unit Tests", () => {
 
   it("jsPDF private function out", () => {
     const doc = jsPDF({ floatPrecision: 2 });
-    var writeArray = [];
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     writeArray = doc.__private__.out(2);
     expect(writeArray[0]).toEqual("2");
@@ -403,7 +403,7 @@ describe("Core: Unit Tests", () => {
 
   it("jsPDF private function out", () => {
     const doc = jsPDF({ floatPrecision: 2 });
-    var writeArray = [];
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     writeArray = doc.__private__.out(2);
     expect(writeArray[0]).toEqual("2");
@@ -412,14 +412,14 @@ describe("Core: Unit Tests", () => {
   });
 
   it("jsPDF private function write", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
-    var writeArray = [];
+    let doc = jsPDF({ floatPrecision: 2 });
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     writeArray = doc.__private__.write("test");
     expect(writeArray[0]).toEqual("test");
 
     doc = jsPDF({ floatPrecision: 2 });
-    var writeArray = [];
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     writeArray = doc.__private__.write("test", "test2");
     expect(writeArray[0]).toEqual("test test2");
@@ -564,12 +564,12 @@ describe("Core: Unit Tests", () => {
   }
 
   it("jsPDF private function output", () => {
-    var doc = new jsPDF({ floatPrecision: 2 });
+    let doc = new jsPDF({ floatPrecision: 2 });
 
     doc.__private__.setFileId("0000000000000000000000000BADFACE");
     doc.__private__.setCreationDate("D:19871210000000+00'00'");
 
-    var data = [
+    let data = [
       "%PDF-1.3",
       "%ºß¬à",
       "3 0 obj",
@@ -901,14 +901,14 @@ describe("Core: Unit Tests", () => {
 
   it("jsPDF private function setLineDash", () => {
     const doc = jsPDF({ floatPrecision: 3 });
-    var writeArray = [];
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
 
     expect(function() {
       doc.__private__.setLineDash("");
     }).not.toThrow(new Error("Invalid arguments passed to jsPDF.setLineDash"));
 
-    var writeArray = [];
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     expect(function() {
       doc.__private__.setLineDash();
@@ -916,19 +916,19 @@ describe("Core: Unit Tests", () => {
 
     expect(writeArray).toEqual(["[] 0. d"]);
 
-    var writeArray = [];
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     expect(function() {
       doc.__private__.setLineDash("1 1", "1");
     }).toThrow(new Error("Invalid arguments passed to jsPDF.setLineDash"));
 
-    var writeArray = [];
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     expect(function() {
       doc.__private__.setLineDash("1 1", 1);
     }).toThrow(new Error("Invalid arguments passed to jsPDF.setLineDash"));
 
-    var writeArray = [];
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     expect(function() {
       doc.__private__.setLineDash([1, 1], 1);
@@ -975,7 +975,7 @@ describe("Core: Unit Tests", () => {
   });
 
   it("jsPDF public function pageSize", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
+    let doc = jsPDF({ floatPrecision: 2 });
 
     expect(doc.internal.pageSize.getHeight()).toEqual(297.0000833333333);
 
@@ -1331,9 +1331,9 @@ describe("Core: Unit Tests", () => {
   });
 
   it("jsPDF private function lines", () => {
-    var doc = jsPDF({ floatPrecision: 3 });
+    let doc = jsPDF({ floatPrecision: 3 });
 
-    var writeArray = [];
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     doc.__private__.lines(
       [
@@ -1701,7 +1701,7 @@ describe("Core: Unit Tests", () => {
 
     expect(doc.__private__.ellipse(1, 2, 3, 4, "F")).toBe(doc.__private__);
 
-    var writeArray = [];
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     doc.__private__.ellipse(1, 2, 3, 4, null);
     expect(writeArray).toEqual([
@@ -1728,7 +1728,7 @@ describe("Core: Unit Tests", () => {
   it("jsPDF private function rect", () => {
     const doc = jsPDF({ floatPrecision: 2 });
 
-    var writeArray = [];
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     doc.__private__.rect(1, 2, 3, 4, "F");
     expect(writeArray).toEqual(["2.83 836.22 8.5 -11.34 re", "f"]);
@@ -1757,7 +1757,7 @@ describe("Core: Unit Tests", () => {
       doc.__private__.rect(1, 2, 3, 4, "invalid");
     }).toThrow(new Error("Invalid arguments passed to jsPDF.rect"));
 
-    var writeArray = [];
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     doc.__private__.rect(1, 2, 3, 4, "F");
     expect(writeArray).toEqual(["2.83 836.22 8.5 -11.34 re", "f"]);
@@ -1788,31 +1788,31 @@ describe("Core: Unit Tests", () => {
   });
 
   it("jsPDF private function clip", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
-    var writeArray = [];
+    let doc = jsPDF({ floatPrecision: 2 });
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     doc.__private__.clip("evenodd");
     expect(writeArray).toEqual(["W*"]);
 
-    var doc = jsPDF({ floatPrecision: 2 });
-    var writeArray = [];
+    let doc = jsPDF({ floatPrecision: 2 });
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     doc.__private__.clip();
     expect(writeArray).toEqual(["W"]);
   });
 
   it("jsPDF private function discardPath", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
-    var writeArray = [];
+    let doc = jsPDF({ floatPrecision: 2 });
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     doc.__private__.discardPath();
     expect(writeArray).toEqual(["n"]);
   });
 
   it("jsPDF private function text", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
+    let doc = jsPDF({ floatPrecision: 2 });
 
-    var writeArray;
+    let writeArray;
 
     expect(function() {
       doc.__private__.text("valid", 10, 10);
@@ -2537,9 +2537,9 @@ This is a test too.`,
   });
 
   it("jsPDF private function setLineCap", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
+    let doc = jsPDF({ floatPrecision: 2 });
 
-    var writeArray;
+    let writeArray;
 
     //miter/butt
     doc = jsPDF({ floatPrecision: 2 });
@@ -2557,9 +2557,9 @@ This is a test too.`,
   });
 
   it("jsPDF private function setLineJoin", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
+    let doc = jsPDF({ floatPrecision: 2 });
 
-    var writeArray;
+    let writeArray;
 
     //butt
     doc = jsPDF({ floatPrecision: 2 });
@@ -2577,10 +2577,10 @@ This is a test too.`,
   });
 
   it("jsPDF private function setLineMiterLimit", () => {
-    var writeArray;
+    let writeArray;
 
     //miter/butt
-    var doc = jsPDF({ floatPrecision: 2 });
+    let doc = jsPDF({ floatPrecision: 2 });
     writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     doc.__private__.setLineMiterLimit(1);
@@ -2590,9 +2590,9 @@ This is a test too.`,
     }).toThrow(new Error("Invalid argument passed to jsPDF.setLineMiterLimit"));
   });
   it("jsPDF private function putHeader", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
+    let doc = jsPDF({ floatPrecision: 2 });
 
-    var writeArray;
+    let writeArray;
 
     //without documentProperties
     doc = jsPDF({ floatPrecision: 2 });
@@ -2603,8 +2603,8 @@ This is a test too.`,
   });
 
   it("jsPDF private function putCatalog", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
-    var writeArray;
+    let doc = jsPDF({ floatPrecision: 2 });
+    let writeArray;
 
     //putCatalog, default Values
     doc = jsPDF({ floatPrecision: 2 });
@@ -2871,15 +2871,15 @@ This is a test too.`,
   });
 
   it("jsPDF private function putInfo", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
+    let doc = jsPDF({ floatPrecision: 2 });
 
-    var writeArray;
+    let writeArray;
 
     //without documentProperties
     doc = jsPDF({ floatPrecision: 2 });
     writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
-    var pdfDateString = "D:19871210000000+00'00'";
+    let pdfDateString = "D:19871210000000+00'00'";
     doc.__private__.setCreationDate(pdfDateString);
     doc.__private__.putInfo();
     expect(writeArray).toEqual([
@@ -2894,7 +2894,7 @@ This is a test too.`,
     doc = jsPDF({ floatPrecision: 2 });
     writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
-    var pdfDateString = "D:19871210000000+00'00'";
+    let pdfDateString = "D:19871210000000+00'00'";
     doc.__private__.setCreationDate(pdfDateString);
 
     doc.__private__.setDocumentProperties({
@@ -2921,9 +2921,9 @@ This is a test too.`,
   });
 
   it("jsPDF private function putTrailer", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
+    let doc = jsPDF({ floatPrecision: 2 });
 
-    var writeArray;
+    let writeArray;
 
     //without documentProperties
     doc = jsPDF({ floatPrecision: 2 });
@@ -2944,8 +2944,8 @@ This is a test too.`,
   });
 
   it("jsPDF private function putXRef", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
-    var writeArray;
+    let doc = jsPDF({ floatPrecision: 2 });
+    let writeArray;
 
     doc = jsPDF({ floatPrecision: 2 });
     writeArray = [];
@@ -2961,8 +2961,8 @@ This is a test too.`,
   });
 
   it("jsPDF private function putStream", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
-    var writeArray;
+    let doc = jsPDF({ floatPrecision: 2 });
+    let writeArray;
 
     doc = jsPDF({ floatPrecision: 2 });
     writeArray = [];
@@ -3042,7 +3042,7 @@ This is a test too.`,
     doc.__private__.putStream();
     expect(writeArray).toEqual(["<<", ">>"]);
 
-    var expected = bufferFromString(
+    let expected = bufferFromString(
       [
         "<<",
         "/Length 18",
@@ -3077,8 +3077,8 @@ This is a test too.`,
   });
 
   it("jsPDF public function comment", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
-    var writeArray;
+    let doc = jsPDF({ floatPrecision: 2 });
+    let writeArray;
 
     doc = jsPDF({ floatPrecision: 2 });
     writeArray = [];
@@ -3088,8 +3088,8 @@ This is a test too.`,
   });
 
   it("jsPDF private function putPage", () => {
-    var doc = jsPDF({ floatPrecision: 2 });
-    var writeArray;
+    let doc = jsPDF({ floatPrecision: 2 });
+    let writeArray;
 
     doc = jsPDF({ floatPrecision: 2 });
     writeArray = [];
@@ -3135,9 +3135,9 @@ This is a test too.`,
   });
 
   it("jsPDF private function buildDocument", () => {
-    var doc = jsPDF();
+    let doc = jsPDF();
 
-    var writeArray;
+    let writeArray;
 
     doc = jsPDF({ floatPrecision: 2 });
     writeArray = [];
@@ -3623,8 +3623,8 @@ This is a test too.`,
   });
 
   it("jsPdf public function beginFormObject, endFormObject", () => {
-    var doc = jsPDF();
-    var startContext = doc.internal.getCurrentPageInfo().pageContext;
+    let doc = jsPDF();
+    let startContext = doc.internal.getCurrentPageInfo().pageContext;
     doc.beginFormObject(0, 0, 100, 100, new doc.internal.Matrix(1, 0, 0, 1, 0, 0));
     expect(doc.internal.getCurrentPageInfo().pageContext).not.toEqual(
       startContext
@@ -3644,9 +3644,9 @@ This is a test too.`,
 
 function bufferFromString(string) {
   // return Array.apply([], Buffer.from(string, "utf-8"));
-  var buffer = new Uint8Array(string.length);
+  let buffer = new Uint8Array(string.length);
 
-  for (var i = 0; i < string.length; i++) {
+  for (let i = 0; i < string.length; i++) {
     buffer[i] = string.charCodeAt(i);
   }
 
