@@ -18,11 +18,11 @@ function RGBColor(color_string) {
   color_string = color_string.replace(/ /g, "");
   color_string = color_string.toLowerCase();
 
-  var channels;
+  let channels;
 
   // before getting into regexps, try simple matches
   // and overwrite the input
-  var simple_colors = {
+  let simple_colors = {
     aliceblue: "f0f8ff",
     antiquewhite: "faebd7",
     aqua: "00ffff",
@@ -170,7 +170,7 @@ function RGBColor(color_string) {
   color_string = simple_colors[color_string] || color_string;
 
   // array of color definition objects
-  var color_defs = [
+  let color_defs = [
     {
       re: /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/,
       example: ["rgb(123, 234, 45)", "rgb(255,234,245)"],
@@ -203,10 +203,10 @@ function RGBColor(color_string) {
   ];
 
   // search through the definitions to find a match
-  for (var i = 0; i < color_defs.length; i++) {
-    var re = color_defs[i].re;
-    var processor = color_defs[i].process;
-    var bits = re.exec(color_string);
+  for (let i = 0; i < color_defs.length; i++) {
+    let re = color_defs[i].re;
+    let processor = color_defs[i].process;
+    let bits = re.exec(color_string);
     if (bits) {
       channels = processor(bits);
       this.r = channels[0];
@@ -226,9 +226,9 @@ function RGBColor(color_string) {
     return "rgb(" + this.r + ", " + this.g + ", " + this.b + ")";
   };
   this.toHex = function() {
-    var r = this.r.toString(16);
-    var g = this.g.toString(16);
-    var b = this.b.toString(16);
+    let r = this.r.toString(16);
+    let g = this.g.toString(16);
+    let b = this.b.toString(16);
     if (r.length == 1) r = "0" + r;
     if (g.length == 1) g = "0" + g;
     if (b.length == 1) b = "0" + b;
