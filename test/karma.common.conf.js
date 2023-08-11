@@ -1,4 +1,4 @@
-var karmaConfig = {
+let karmaConfig = {
   // base path that will be used to resolve all patterns (eg. files, exclude)
   basePath: "..",
   // frameworks to use
