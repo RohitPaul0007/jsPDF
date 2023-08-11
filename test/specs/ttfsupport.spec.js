@@ -9,12 +9,12 @@
 describe("TTFSupport", () => {
   beforeAll(loadGlobals);
   it("should parse directly the file", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       filters: ["ASCIIHexEncode"],
       putOnlyUsedFonts: true,
       floatPrecision: 2
     });
-    var PTSans;
+    let PTSans;
     if (typeof global === "object" && global.isNode === true) {
       PTSans = doc.loadFile("./test/reference/PTSans.ttf");
     } else {
@@ -30,7 +30,7 @@ describe("TTFSupport", () => {
   });
 
   it("should parse directly the file var 2", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       filters: ["ASCIIHexEncode"],
       putOnlyUsedFonts: true,
       floatPrecision: 2
