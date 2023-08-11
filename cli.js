@@ -4,11 +4,11 @@ const configuration = require("./modules.conf.js");
 console.log(configuration);
 
 function uniq(a) {
-  var prims = { boolean: {}, number: {}, string: {} },
+  let prims = { boolean: {}, number: {}, string: {} },
     objs = [];
 
   return a.filter(function(item) {
-    var type = typeof item;
+    let type = typeof item;
     if (type in prims)
       if (Object.prototype.hasOwnProperty.call(prims[type], item)) {
         return false;
@@ -21,13 +21,13 @@ function uniq(a) {
 }
 
 function generateFileList(list) {
-  var fileList = [];
-  var file;
-  for (var i = 0; i < list.length; i++) {
+  let fileList = [];
+  let file;
+  for (let i = 0; i < list.length; i++) {
     fileList.push(list[i].name + ".js");
     console.log(list[i]);
     console.log(configuration[list[i].name]);
-    for (var j = 0; j < configuration[list[i]].deps.length; j++) {
+    for (let j = 0; j < configuration[list[i]].deps.length; j++) {
       file = configuration[list[i]].deps[j];
       configuration[file].type;
       fileList.push(configuration[file].type + "/" + ".js");
