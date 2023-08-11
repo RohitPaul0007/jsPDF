@@ -420,7 +420,7 @@ describe("font-face", () => {
     });
 
     it("should return all font families", () => {
-      var result = parseFontFamily(
+      let result = parseFontFamily(
         " 'roboto sans' , \"SourceCode Pro\", Co-mP_l3x   , arial, sans-serif   "
       );
 
@@ -434,13 +434,13 @@ describe("font-face", () => {
     });
 
     it("should allow commas in font name", () => {
-      var result = parseFontFamily("before, 'name,with,commas', after");
+      let result = parseFontFamily("before, 'name,with,commas', after");
 
       expect(result).toEqual(["before", "name,with,commas", "after"]);
     });
 
     it("should return default on mismatching quotes", () => {
-      var result = [
+      let result = [
         parseFontFamily("'I am not closed"),
         parseFontFamily('"I am not closed either')
       ];
