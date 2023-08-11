@@ -8,7 +8,7 @@
 
 describe("Core: Initialization Options", () => {
   beforeAll(loadGlobals);
-  var global =
+  let global =
     (typeof self !== "undefined" && self) ||
     (typeof window !== "undefined" && window) ||
     (typeof global !== "undefined" && global) ||
@@ -198,7 +198,7 @@ describe("Core: Initialization Options", () => {
 
   it("getCreationDate", () => {
     const doc = jsPDF("portrait", "cm");
-    var creationDate = new Date();
+    let creationDate = new Date();
     doc.setCreationDate(creationDate);
     expect(doc.getCreationDate("jsDate").getFullYear()).toEqual(
       creationDate.getFullYear()
@@ -222,8 +222,8 @@ describe("Core: Initialization Options", () => {
 
   it("setCreationDate", () => {
     const doc = jsPDF("portrait", "cm");
-    var creationDate = new Date(1987, 11, 10, 0, 0, 0);
-    var pdfDateString = "D:19871210000000+00'00'";
+    let creationDate = new Date(1987, 11, 10, 0, 0, 0);
+    let pdfDateString = "D:19871210000000+00'00'";
     doc.setCreationDate(pdfDateString);
     expect(doc.getCreationDate("jsDate").getFullYear()).toEqual(
       creationDate.getFullYear()
