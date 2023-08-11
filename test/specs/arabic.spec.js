@@ -4,7 +4,7 @@ describe("Module: Unicode: Arabic", function() {
   beforeAll(loadGlobals);
   //https://fonts.google.com/specimen/Amiri?selection.family=Amiri
   return;
-  var AmiriRegular = loadBinaryResource("reference/Amiri-Regular.ttf");
+  let AmiriRegular = loadBinaryResource("reference/Amiri-Regular.ttf");
 
   it("simple pdf with arabic text", function() {
     const doc = new jsPDF({
@@ -18,7 +18,7 @@ describe("Module: Unicode: Arabic", function() {
     doc.setFont("Amiri"); // set font
     doc.setFontSize(50);
 
-    var arabicText = "إذا لم تستح فاصنع ما شئت";
+    let arabicText = "إذا لم تستح فاصنع ما شئت";
 
     doc.text(arabicText, 10, 60);
 
