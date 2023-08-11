@@ -24,7 +24,7 @@ function PubSub(context) {
       "Invalid Context passed to initialize PubSub (jsPDF-module)"
     );
   }
-  var topics = {};
+  let topics = {};
 
   this.subscribe = function(topic, callback, once) {
     once = once || false;
@@ -42,14 +42,14 @@ function PubSub(context) {
       topics[topic] = {};
     }
 
-    var token = Math.random().toString(35);
+    let token = Math.random().toString(35);
     topics[topic][token] = [callback, !!once];
 
     return token;
   };
 
   this.unsubscribe = function(token) {
-    for (var topic in topics) {
+    for (let topic in topics) {
       if (topics[topic][token]) {
         delete topics[topic][token];
         if (Object.keys(topics[topic]).length === 0) {
@@ -63,11 +63,11 @@ function PubSub(context) {
 
   this.publish = function(topic) {
     if (topics.hasOwnProperty(topic)) {
-      var args = Array.prototype.slice.call(arguments, 1),
+      let args = Array.prototype.slice.call(arguments, 1),
         tokens = [];
 
-      for (var token in topics[topic]) {
-        var sub = topics[topic][token];
+      for (let token in topics[topic]) {
+        let sub = topics[topic][token];
         try {
           sub[0].apply(context, args);
         } catch (ex) {
@@ -99,8 +99,8 @@ function GState(parameters) {
    * @name GState#stroke-opacity
    * @type {any}
    */
-  var supported = "opacity,stroke-opacity".split(",");
-  for (var p in parameters) {
+  let supported = "opacity,stroke-opacity".split(",");
+  for (let p in parameters) {
     if (parameters.hasOwnProperty(p) && supported.indexOf(p) >= 0) {
       this[p] = parameters[p];
     }
@@ -118,10 +118,10 @@ function GState(parameters) {
 }
 
 GState.prototype.equals = function equals(other) {
-  var ignore = "id,objectNumber,equals";
-  var p;
+  let ignore = "id,objectNumber,equals";
+  let p;
   if (!other || typeof other !== typeof this) return false;
-  var count = 0;
+  let count = 0;
   for (p in this) {
     if (ignore.indexOf(p) >= 0) continue;
     if (this.hasOwnProperty(p) && !other.hasOwnProperty(p)) return false;
@@ -207,16 +207,16 @@ function TilingPattern(boundingBox, xStep, yStep, gState, matrix) {
  * @constructor
  */
 function jsPDF(options) {
-  var orientation = typeof arguments[0] === "string" ? arguments[0] : "p";
-  var unit = arguments[1];
-  var format = arguments[2];
-  var compressPdf = arguments[3];
-  var filters = [];
-  var userUnit = 1.0;
-  var precision;
-  var floatPrecision = 16;
-  var defaultPathOperation = "S";
-  var encryptionOptions = null;
+  let orientation = typeof arguments[0] === "string" ? arguments[0] : "p";
+  let unit = arguments[1];
+  let format = arguments[2];
+  let compressPdf = arguments[3];
+  let filters = [];
+  let userUnit = 1.0;
+  let precision;
+  let floatPrecision = 16;
+  let defaultPathOperation = "S";
+  let encryptionOptions = null;
 
   options = options || {};
 
@@ -248,18 +248,18 @@ function jsPDF(options) {
 
   unit = unit || "mm";
   orientation = ("" + (orientation || "P")).toLowerCase();
-  var putOnlyUsedFonts = options.putOnlyUsedFonts || false;
-  var usedFonts = {};
+  let putOnlyUsedFonts = options.putOnlyUsedFonts || false;
+  let usedFonts = {};
 
-  var API = {
+  let API = {
     internal: {},
     __private__: {}
   };
 
   API.__private__.PubSub = PubSub;
 
-  var pdfVersion = "1.3";
-  var getPdfVersion = (API.__private__.getPdfVersion = function() {
+  let pdfVersion = "1.3";
+  let getPdfVersion = (API.__private__.getPdfVersion = function() {
     return pdfVersion;
   });
 
@@ -268,7 +268,7 @@ function jsPDF(options) {
   };
 
   // Size in pt of various paper formats
-  var pageFormats = {
+  let pageFormats = {
     a0: [2383.94, 3370.39],
     a1: [1683.78, 2383.94],
     a2: [1190.55, 1683.78],
@@ -316,17 +316,17 @@ function jsPDF(options) {
     return pageFormats;
   };
 
-  var getPageFormat = (API.__private__.getPageFormat = function(value) {
+  let getPageFormat = (API.__private__.getPageFormat = function(value) {
     return pageFormats[value];
   });
 
   format = format || "a4";
 
-  var ApiMode = {
+  let ApiMode = {
     COMPAT: "compat",
     ADVANCED: "advanced"
   };
-  var apiMode = ApiMode.COMPAT;
+  let apiMode = ApiMode.COMPAT;
 
   function advancedAPI() {
     // prepend global change of basis matrix
@@ -365,7 +365,7 @@ function jsPDF(options) {
    * @returns {string}
    * @private
    */
-  var combineFontStyleAndFontWeight = (API.__private__.combineFontStyleAndFontWeight = function(
+  let combineFontStyleAndFontWeight = (API.__private__.combineFontStyleAndFontWeight = function(
     fontStyle,
     fontWeight
   ) {
@@ -418,7 +418,7 @@ function jsPDF(options) {
    * @name advancedAPI
    */
   API.advancedAPI = function(body) {
-    var doSwitch = apiMode === ApiMode.COMPAT;
+    let doSwitch = apiMode === ApiMode.COMPAT;
 
     if (doSwitch) {
       advancedAPI.call(this);
@@ -447,7 +447,7 @@ function jsPDF(options) {
    * @name compatApi
    */
   API.compatAPI = function(body) {
-    var doSwitch = apiMode === ApiMode.ADVANCED;
+    let doSwitch = apiMode === ApiMode.ADVANCED;
 
     if (doSwitch) {
       compatAPI.call(this);
@@ -475,7 +475,7 @@ function jsPDF(options) {
     return apiMode === ApiMode.ADVANCED;
   };
 
-  var advancedApiModeTrap = function(methodName) {
+  let advancedApiModeTrap = function(methodName) {
     if (apiMode !== ApiMode.ADVANCED) {
       throw new Error(
         methodName +
@@ -485,11 +485,11 @@ function jsPDF(options) {
     }
   };
 
-  var roundToPrecision = (API.roundToPrecision = API.__private__.roundToPrecision = function(
+  let roundToPrecision = (API.roundToPrecision = API.__private__.roundToPrecision = function(
     number,
     parmPrecision
   ) {
-    var tmpPrecision = precision || parmPrecision;
+    let tmpPrecision = precision || parmPrecision;
     if (isNaN(number) || isNaN(tmpPrecision)) {
       throw new Error("Invalid argument passed to jsPDF.roundToPrecision");
     }
@@ -497,7 +497,7 @@ function jsPDF(options) {
   });
 
   // high precision float
-  var hpf;
+  let hpf;
   if (typeof floatPrecision === "number") {
     hpf = API.hpf = API.__private__.hpf = function(number) {
       if (isNaN(number)) {
@@ -524,21 +524,21 @@ function jsPDF(options) {
       return roundToPrecision(number, 16);
     };
   }
-  var f2 = (API.f2 = API.__private__.f2 = function(number) {
+  let f2 = (API.f2 = API.__private__.f2 = function(number) {
     if (isNaN(number)) {
       throw new Error("Invalid argument passed to jsPDF.f2");
     }
     return roundToPrecision(number, 2);
   });
 
-  var f3 = (API.__private__.f3 = function(number) {
+  let f3 = (API.__private__.f3 = function(number) {
     if (isNaN(number)) {
       throw new Error("Invalid argument passed to jsPDF.f3");
     }
     return roundToPrecision(number, 3);
   });
 
-  var scale = (API.scale = API.__private__.scale = function(number) {
+  let scale = (API.scale = API.__private__.scale = function(number) {
     if (isNaN(number)) {
       throw new Error("Invalid argument passed to jsPDF.scale");
     }
@@ -549,7 +549,7 @@ function jsPDF(options) {
     }
   });
 
-  var transformY = function(y) {
+  let transformY = function(y) {
     if (apiMode === ApiMode.COMPAT) {
       return getPageHeight() - y;
     } else if (apiMode === ApiMode.ADVANCED) {
@@ -557,7 +557,7 @@ function jsPDF(options) {
     }
   };
 
-  var transformScaleY = function(y) {
+  let transformScaleY = function(y) {
     return scale(transformY(y));
   };
 
@@ -575,13 +575,13 @@ function jsPDF(options) {
     }
   };
 
-  var fileId = "00000000000000000000000000000000";
+  let fileId = "00000000000000000000000000000000";
 
-  var getFileId = (API.__private__.getFileId = function() {
+  let getFileId = (API.__private__.getFileId = function() {
     return fileId;
   });
 
-  var setFileId = (API.__private__.setFileId = function(value) {
+  let setFileId = (API.__private__.setFileId = function(value) {
     if (typeof value !== "undefined" && /^[a-fA-F0-9]{32}$/.test(value)) {
       fileId = value.toUpperCase();
     } else {
@@ -629,13 +629,13 @@ function jsPDF(options) {
     return getFileId();
   };
 
-  var creationDate;
+  let creationDate;
 
-  var convertDateToPDFDate = (API.__private__.convertDateToPDFDate = function(
+  let convertDateToPDFDate = (API.__private__.convertDateToPDFDate = function(
     parmDate
   ) {
-    var result = "";
-    var tzoffset = parmDate.getTimezoneOffset(),
+    let result = "";
+    let tzoffset = parmDate.getTimezoneOffset(),
       tzsign = tzoffset < 0 ? "+" : "-",
       tzhour = Math.floor(Math.abs(tzoffset / 60)),
       tzmin = Math.abs(tzoffset % 60),
@@ -654,25 +654,25 @@ function jsPDF(options) {
     return result;
   });
 
-  var convertPDFDateToDate = (API.__private__.convertPDFDateToDate = function(
+  let convertPDFDateToDate = (API.__private__.convertPDFDateToDate = function(
     parmPDFDate
   ) {
-    var year = parseInt(parmPDFDate.substr(2, 4), 10);
-    var month = parseInt(parmPDFDate.substr(6, 2), 10) - 1;
-    var date = parseInt(parmPDFDate.substr(8, 2), 10);
-    var hour = parseInt(parmPDFDate.substr(10, 2), 10);
-    var minutes = parseInt(parmPDFDate.substr(12, 2), 10);
-    var seconds = parseInt(parmPDFDate.substr(14, 2), 10);
+    let year = parseInt(parmPDFDate.substr(2, 4), 10);
+    let month = parseInt(parmPDFDate.substr(6, 2), 10) - 1;
+    let date = parseInt(parmPDFDate.substr(8, 2), 10);
+    let hour = parseInt(parmPDFDate.substr(10, 2), 10);
+    let minutes = parseInt(parmPDFDate.substr(12, 2), 10);
+    let seconds = parseInt(parmPDFDate.substr(14, 2), 10);
     // var timeZoneHour = parseInt(parmPDFDate.substr(16, 2), 10);
     // var timeZoneMinutes = parseInt(parmPDFDate.substr(20, 2), 10);
 
-    var resultingDate = new Date(year, month, date, hour, minutes, seconds, 0);
+    let resultingDate = new Date(year, month, date, hour, minutes, seconds, 0);
     return resultingDate;
   });
 
-  var setCreationDate = (API.__private__.setCreationDate = function(date) {
-    var tmpCreationDateString;
-    var regexPDFCreationDate = /^D:(20[0-2][0-9]|203[0-7]|19[7-9][0-9])(0[0-9]|1[0-2])([0-2][0-9]|3[0-1])(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-5][0-9])(0[0-9]|[1-5][0-9])(\+0[0-9]|\+1[0-4]|-0[0-9]|-1[0-1])'(0[0-9]|[1-5][0-9])'?$/;
+  let setCreationDate = (API.__private__.setCreationDate = function(date) {
+    let tmpCreationDateString;
+    let regexPDFCreationDate = /^D:(20[0-2][0-9]|203[0-7]|19[7-9][0-9])(0[0-9]|1[0-2])([0-2][0-9]|3[0-1])(0[0-9]|1[0-9]|2[0-3])(0[0-9]|[1-5][0-9])(0[0-9]|[1-5][0-9])(\+0[0-9]|\+1[0-4]|-0[0-9]|-1[0-1])'(0[0-9]|[1-5][0-9])'?$/;
     if (typeof date === "undefined") {
       date = new Date();
     }
@@ -688,8 +688,8 @@ function jsPDF(options) {
     return creationDate;
   });
 
-  var getCreationDate = (API.__private__.getCreationDate = function(type) {
-    var result = creationDate;
+  let getCreationDate = (API.__private__.getCreationDate = function(type) {
+    let result = creationDate;
     if (type === "jsDate") {
       result = convertPDFDateToDate(creationDate);
     }
