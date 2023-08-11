@@ -123,8 +123,8 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("AcroFormField Rect, x, y, width, height", function() {
-    var doc = new jsPDF("p", "pt", "a4");
-    var textFieldRect = new TextField();
+    let doc = new jsPDF("p", "pt", "a4");
+    let textFieldRect = new TextField();
     textFieldRect.Rect = [50, 140, 30, 10];
     // doc.addField(textFieldRect);
 
@@ -151,7 +151,7 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("AcroFormField value", function() {
-    var formObject = new TextField();
+    let formObject = new TextField();
 
     formObject.value = "test1";
     expect(formObject.value).toEqual("test1");
@@ -189,18 +189,18 @@ describe("Module: Acroform Unit Test", function() {
     expect(formObject.value).toEqual("((test4b))");
     expect(formObject.V).toEqual("(\\(\\(test4b\\)\\))");
 
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
       floatPrecision: 2
     });
-    var radioGroup = new RadioButton();
+    let radioGroup = new RadioButton();
     radioGroup.V = "/Test5";
     radioGroup.Subtype = "Form";
     doc.addField(radioGroup);
 
-    var radioButton1 = radioGroup.createOption("Test");
+    let radioButton1 = radioGroup.createOption("Test");
     radioButton1.Rect = [50, 170, 30, 10];
     radioButton1.AS = "/Test";
 
@@ -213,7 +213,7 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("AcroFormField defaultValue", function() {
-    var formObject = new TextField();
+    let formObject = new TextField();
     
     formObject.defaultValue = "test1";
     expect(formObject.defaultValue).toEqual("test1");
@@ -244,18 +244,18 @@ describe("Module: Acroform Unit Test", function() {
     expect(formObject.defaultValue).toEqual("(test4b)");
     expect(formObject.DV).toEqual("(\\(test4b\\))");
 
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
       floatPrecision: 2
     });
-    var radioGroup = new RadioButton();
+    let radioGroup = new RadioButton();
     radioGroup.DV = "/Test5";
     radioGroup.Subtype = "Form";
     doc.addField(radioGroup);
 
-    var radioButton1 = radioGroup.createOption("Test");
+    let radioButton1 = radioGroup.createOption("Test");
     radioButton1.Rect = [50, 170, 30, 10];
     radioButton1.AS = "/Test";
 
@@ -268,36 +268,36 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("AcroFormField AS", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
       floatPrecision: 2
     });
-    var radioGroup = new RadioButton();
+    let radioGroup = new RadioButton();
     radioGroup.V = "/Test5";
     radioGroup.Subtype = "Form";
     doc.addField(radioGroup);
 
-    var radioButton1 = radioGroup.createOption("Test");
+    let radioButton1 = radioGroup.createOption("Test");
     radioButton1.Rect = [50, 170, 30, 10];
     radioButton1.AS = "/Test";
 
     expect(radioButton1.AS).toEqual("/Test");
   });
   it("AcroFormField appearanceState", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
       floatPrecision: 2
     });
-    var radioGroup = new RadioButton();
+    let radioGroup = new RadioButton();
     radioGroup.V = "/Test5";
     radioGroup.Subtype = "Form";
     doc.addField(radioGroup);
 
-    var radioButton1 = radioGroup.createOption("Test");
+    let radioButton1 = radioGroup.createOption("Test");
     radioButton1.Rect = [50, 170, 30, 10];
     radioButton1.AS = "/Test";
 
@@ -310,7 +310,7 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("AcroFormChoiceField getOptions, setOptions, addOption, removeOption", function() {
-    var listbox = new ListBox();
+    let listbox = new ListBox();
 
     listbox.Opt = "[(c)(a)(d)(f)(b)(s)]"; // classic initialization
 
@@ -324,7 +324,7 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("AcroFormChoiceField sort", function() {
-    var listbox = new ListBox();
+    let listbox = new ListBox();
 
     listbox.Opt = "[(c)(a)(d)(f)(b)(g)]"; // classic initialization
 
@@ -391,7 +391,7 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("AcroFormField T", function() {
-    var field = new TextField();
+    let field = new TextField();
     expect(field.T.substr(1, 11)).toEqual("FieldObject");
     field.T = "testname";
     expect(field.T).toEqual("(testname)");
@@ -402,7 +402,7 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("AcroFormField FT", function() {
-    var field = new TextField();
+    let field = new TextField();
 
     expect(function() {
       field.FT = "Invalid";
@@ -433,7 +433,7 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("AcroFormTextField Ff", function() {
-    var field = new TextField();
+    let field = new TextField();
 
     expect(function() {
       field.Ff = "Invalid";
@@ -539,7 +539,7 @@ describe("Module: Acroform Unit Test", function() {
   });
   it("AcroFormComboBox", function() {
     expect(new ComboBox().combo).toEqual(true);
-    var field = new ComboBox();
+    let field = new ComboBox();
     expect(field.Ff).toEqual(Math.pow(2, 17));
     expect(field.combo).toEqual(true);
     field.combo = false;
@@ -584,7 +584,7 @@ describe("Module: Acroform Unit Test", function() {
     expect(new EditBox().combo).toEqual(true);
     expect(new EditBox().edit).toEqual(true);
 
-    var field = new EditBox();
+    let field = new EditBox();
     expect(field.Ff).toEqual(Math.pow(2, 17) + Math.pow(2, 18));
     field.edit = false;
     expect(field.combo).toEqual(true);
@@ -598,7 +598,7 @@ describe("Module: Acroform Unit Test", function() {
   it("AcroFormButton", function() {
     expect(new Button().FT).toEqual("/Btn");
 
-    var field = new Button();
+    let field = new Button();
     expect(field.Ff).toEqual(0);
     field.noToggleToOff = true;
     expect(field.noToggleToOff).toEqual(true);
@@ -627,7 +627,7 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("AcroFormField F", function() {
-    var field = new TextField();
+    let field = new TextField();
 
     expect(function() {
       field.F = "Invalid";
@@ -648,7 +648,7 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("AcroFormCheckBox", function() {
-    var field = new CheckBox();
+    let field = new CheckBox();
 
     expect(field.FT).toEqual("/Btn");
     expect(field.fontName).toEqual("zapfdingbats");
@@ -659,7 +659,7 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("AcroFormField fontName, fontStyle", function() {
-    var field = new TextField();
+    let field = new TextField();
 
     expect(field.fontName).toEqual("helvetica");
     field.fontName = "courier";
@@ -671,7 +671,7 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("AcroFormField textAlign", function() {
-    var field = new TextField();
+    let field = new TextField();
 
     expect(field.Q).toEqual(undefined);
 
@@ -708,7 +708,7 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("addField", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
@@ -739,7 +739,7 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("addButton", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
@@ -755,7 +755,7 @@ describe("Module: Acroform Unit Test", function() {
   });
 
   it("AcroFormPasswordField", function() {
-    var field = new PasswordField();
+    let field = new PasswordField();
 
     expect(field.Ff).toEqual(Math.pow(2, 13));
     expect(field.password).toEqual(true);
@@ -771,7 +771,7 @@ describe("Module: Acroform Unit Test", function() {
     expect(new PushButton() instanceof Button).toEqual(true);
   });
   it("ComboBox TopIndex", function() {
-    var comboBox = new ComboBox();
+    let comboBox = new ComboBox();
     expect(comboBox.topIndex).toEqual(0);
     comboBox.topIndex = 1;
     expect(comboBox.topIndex).toEqual(1);
@@ -781,7 +781,7 @@ describe("Module: Acroform Unit Test", function() {
 describe("Module: Acroform Integration Test", function() {
   beforeAll(loadGlobals);
   it("ComboBox - old", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
@@ -790,7 +790,7 @@ describe("Module: Acroform Integration Test", function() {
     doc.setFontSize(12);
     doc.text(10, 105, "ComboBox:");
 
-    var d = new ComboBox();
+    let d = new ComboBox();
     d.T = "ChoiceField1";
     d.TI = 1;
     d.Rect = [50, 100, 30, 10];
@@ -803,7 +803,7 @@ describe("Module: Acroform Integration Test", function() {
   });
 
   it("ComboBox - new", function() {
-    var doc = jsPDF({
+    let doc = jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
@@ -812,7 +812,7 @@ describe("Module: Acroform Integration Test", function() {
     doc.setFontSize(12);
     doc.text(10, 105, "ComboBox:");
 
-    var d = new ComboBox();
+    let d = new ComboBox();
     d.fieldName = "ChoiceField1";
     d.topIndex = 1;
     // d.x = 50;
@@ -829,14 +829,14 @@ describe("Module: Acroform Integration Test", function() {
   });
 
   it("CheckBox - old", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
       floatPrecision: 2
     });
     doc.text(10, 125, "CheckBox:");
-    var checkBox = new CheckBox();
+    let checkBox = new CheckBox();
     checkBox.T = "CheckBox1";
     checkBox.Rect = [50, 120, 30, 10];
     doc.addField(checkBox);
@@ -845,14 +845,14 @@ describe("Module: Acroform Integration Test", function() {
   });
 
   it("CheckBox - new", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
       floatPrecision: 2
     });
     doc.text(10, 125, "CheckBox:");
-    var checkBox = new CheckBox();
+    let checkBox = new CheckBox();
     checkBox.fieldName = "CheckBox1";
     checkBox.Rect = [50, 120, 30, 10];
     doc.addField(checkBox);
@@ -861,7 +861,7 @@ describe("Module: Acroform Integration Test", function() {
   });
 
   it("ListBox - old", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
@@ -869,7 +869,7 @@ describe("Module: Acroform Integration Test", function() {
     });
     doc.setFontSize(12);
     doc.text(10, 115, "ListBox:");
-    var d2 = new ListBox();
+    let d2 = new ListBox();
     d2.edit = false;
     d2.T = "ChoiceField2";
     d2.TI = 0;
@@ -882,7 +882,7 @@ describe("Module: Acroform Integration Test", function() {
   });
 
   it("ListBox - new", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
@@ -890,7 +890,7 @@ describe("Module: Acroform Integration Test", function() {
     });
     doc.setFontSize(12);
     doc.text(10, 115, "ListBox:");
-    var d2 = new ListBox();
+    let d2 = new ListBox();
     d2.edit = false;
     d2.fieldName = "ChoiceField2";
     d2.topIndex = 0;
@@ -903,14 +903,14 @@ describe("Module: Acroform Integration Test", function() {
   });
 
   it("should add a PushButton", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
       floatPrecision: 2
     });
     doc.text(10, 135, "PushButton:");
-    var pushButton = new PushButton();
+    let pushButton = new PushButton();
     pushButton.T = "PushButton1";
     pushButton.Rect = [50, 130, 30, 10];
     doc.addField(pushButton);
@@ -919,14 +919,14 @@ describe("Module: Acroform Integration Test", function() {
   });
 
   it("should add a TextField", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
       floatPrecision: 2
     });
     doc.text(10, 145, "TextField:");
-    var textField = new TextField();
+    let textField = new TextField();
     textField.Rect = [50, 140, 30, 10];
     textField.multiline = true;
     textField.V =
@@ -939,14 +939,14 @@ describe("Module: Acroform Integration Test", function() {
   });
 
   it("should add a TextField: var. 2", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
       floatPrecision: 2
     });
     doc.text(10, 145, "TextField:");
-    var textField = new doc.AcroFormTextField();
+    let textField = new doc.AcroFormTextField();
     textField.Rect = [50, 140, 30, 10];
     textField.multiline = true;
     textField.V =
@@ -959,14 +959,14 @@ describe("Module: Acroform Integration Test", function() {
   });
 
   it("should add a Password", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
       floatPrecision: 2
     });
     doc.text(10, 155, "Password:");
-    var passwordField = new PasswordField();
+    let passwordField = new PasswordField();
     passwordField.Rect = [50, 150, 30, 10];
     doc.addField(passwordField);
 
@@ -974,14 +974,14 @@ describe("Module: Acroform Integration Test", function() {
   });
 
   it("Check multiline text", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
       floatPrecision: 2
     });
     doc.text("TextField:", 10, 145);
-    var textField = new TextField();
+    let textField = new TextField();
     textField.Rect = [50, 140, 100, 100];
     textField.multiline = true;
     textField.V = "A\nB\nC";
@@ -992,14 +992,14 @@ describe("Module: Acroform Integration Test", function() {
   });
 
   it("Check multiline text in small form", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
       floatPrecision: 2
     });
     doc.text("TextField:", 10, 145);
-    var textField = new TextField();
+    let textField = new TextField();
     textField.Rect = [50, 140, 100, 15];
     textField.multiline = true;
     textField.V = "A\nLong line Long line Long line Long line Long line \nC";
@@ -1010,27 +1010,27 @@ describe("Module: Acroform Integration Test", function() {
   });
 
   it("should add a RadioGroup Cross", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
       floatPrecision: 2
     });
     doc.text(50, 165, "RadioGroup:");
-    var radioGroup = new RadioButton();
+    let radioGroup = new RadioButton();
     radioGroup.V = "/Test";
     radioGroup.Subtype = "Form";
 
     doc.addField(radioGroup);
 
-    var radioButton1 = radioGroup.createOption("Test");
+    let radioButton1 = radioGroup.createOption("Test");
     radioButton1.Rect = [50, 170, 30, 10];
     radioButton1.AS = "/Test";
 
-    var radioButton2 = radioGroup.createOption("Test2");
+    let radioButton2 = radioGroup.createOption("Test2");
     radioButton2.Rect = [50, 180, 30, 10];
 
-    var radioButton3 = radioGroup.createOption("Test3");
+    let radioButton3 = radioGroup.createOption("Test3");
     radioButton3.Rect = [50, 190, 20, 10];
 
     radioGroup.setAppearance(AcroForm.Appearance.RadioButton.Cross);
@@ -1039,27 +1039,27 @@ describe("Module: Acroform Integration Test", function() {
   });
 
   it("should add a RadioGroup Circle", function() {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "mm",
       format: "a4",
       floatPrecision: 2
     });
     doc.text(50, 165, "RadioGroup:");
-    var radioGroup = new RadioButton();
+    let radioGroup = new RadioButton();
     radioGroup.V = "/Test";
     radioGroup.Subtype = "Form";
 
     doc.addField(radioGroup);
 
-    var radioButton1 = radioGroup.createOption("Test");
+    let radioButton1 = radioGroup.createOption("Test");
     radioButton1.Rect = [50, 170, 30, 10];
     radioButton1.AS = "/Test";
 
-    var radioButton2 = radioGroup.createOption("Test2");
+    let radioButton2 = radioGroup.createOption("Test2");
     radioButton2.Rect = [50, 180, 30, 10];
 
-    var radioButton3 = radioGroup.createOption("Test3");
+    let radioButton3 = radioGroup.createOption("Test3");
     radioButton3.Rect = [50, 190, 20, 10];
 
     radioGroup.setAppearance(AcroForm.Appearance.RadioButton.Circle);
@@ -1068,15 +1068,15 @@ describe("Module: Acroform Integration Test", function() {
 
   //fix for issue #1783
   it("acroform and annotations", function() {
-    var doc = jsPDF({ floatPrecision: 2 });
+    let doc = jsPDF({ floatPrecision: 2 });
 
     //index items
-    for (var i = 1; i < 11; i++) {
+    for (let i = 1; i < 11; i++) {
       doc.textWithLink("Page " + (i + 1), 10, 15 * i, { pageNumber: i + 1 });
     }
 
     //pages
-    for (var j = 0; j < 10; j++) {
+    for (let j = 0; j < 10; j++) {
       doc.addPage();
       if (j < 3) {
         // reachable pages
