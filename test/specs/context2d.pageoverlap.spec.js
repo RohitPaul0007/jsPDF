@@ -2,16 +2,16 @@
 describe("Module: Context2D autoPaging", () => {
   beforeAll(loadGlobals);
   it("context2d autoPaging: rect", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 3
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
     doc.context2d.autoPaging = true;
 
-    var writeArray = [];
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     ctx.strokeStyle = "#FF0000";
     ctx.strokeRect(20, 20, 150, 3000);
@@ -158,16 +158,16 @@ describe("Module: Context2D autoPaging", () => {
   });
 
   it("context2d autoPaging: text", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
     doc.context2d.autoPaging = true;
 
-    var writeArray = [];
+    let writeArray = [];
     doc.__private__.setCustomOutputDestination(writeArray);
     ctx.fillText("test", 0, 1000);
 
