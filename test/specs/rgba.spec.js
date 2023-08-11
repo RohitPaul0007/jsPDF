@@ -6,8 +6,8 @@
 describe("Module: RGBASupport", () => {
   beforeAll(loadGlobals);
   it("black pixel", () => {
-    var blackpixel = new Uint8ClampedArray([0, 0, 0, 255]);
-    var blackpixelData = {
+    let blackpixel = new Uint8ClampedArray([0, 0, 0, 255]);
+    let blackpixelData = {
       data: blackpixel,
       width: 1,
       height: 1
@@ -25,8 +25,8 @@ describe("Module: RGBASupport", () => {
   });
 
   it("without format", () => {
-    var blackpixel = new Uint8ClampedArray([0, 0, 0, 255]);
-    var blackpixelData = {
+    let blackpixel = new Uint8ClampedArray([0, 0, 0, 255]);
+    let blackpixelData = {
       data: blackpixel,
       width: 1,
       height: 1
