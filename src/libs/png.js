@@ -46,7 +46,7 @@ var PNG = (function() {
   APNG_BLEND_OP_OVER = 1;
 
   function PNG(data) {
-    var chunkSize,
+    let chunkSize,
       colors,
       palLen,
       delayDen,
@@ -212,7 +212,7 @@ var PNG = (function() {
   }
 
   PNG.prototype.read = function(bytes) {
-    var i, _i, _results;
+    let i, _i, _results;
     _results = [];
     for (
       i = _i = 0;
@@ -225,7 +225,7 @@ var PNG = (function() {
   };
 
   PNG.prototype.readUInt32 = function() {
-    var b1, b2, b3, b4;
+    let b1, b2, b3, b4;
     b1 = this.data[this.pos++] << 24;
     b2 = this.data[this.pos++] << 16;
     b3 = this.data[this.pos++] << 8;
@@ -241,10 +241,10 @@ var PNG = (function() {
   };
 
   PNG.prototype.decodePixels = function(data) {
-    var pixelBytes = this.pixelBitlength / 8;
-    var fullPixels = new Uint8Array(this.width * this.height * pixelBytes);
-    var pos = 0;
-    var _this = this;
+    let pixelBytes = this.pixelBitlength / 8;
+    let fullPixels = new Uint8Array(this.width * this.height * pixelBytes);
+    let pos = 0;
+    let _this = this;
 
     if (data == null) {
       data = this.imgData;
@@ -255,7 +255,7 @@ var PNG = (function() {
 
     data = unzlibSync(data);
     function pass(x0, y0, dx, dy) {
-      var abyte,
+      let abyte,
         c,
         col,
         i,
@@ -276,9 +276,9 @@ var PNG = (function() {
         _k,
         _l,
         _m;
-      var w = Math.ceil((_this.width - x0) / dx),
+      let w = Math.ceil((_this.width - x0) / dx),
         h = Math.ceil((_this.height - y0) / dy);
-      var isFull = _this.width == w && _this.height == h;
+      let isFull = _this.width == w && _this.height == h;
       scanlineLength = pixelBytes * w;
       pixels = isFull ? fullPixels : new Uint8Array(scanlineLength * h);
       length = data.length;
@@ -367,10 +367,10 @@ var PNG = (function() {
             throw new Error("Invalid filter algorithm: " + data[pos - 1]);
         }
         if (!isFull) {
-          var fullPos = ((y0 + row * dy) * _this.width + x0) * pixelBytes;
-          var partPos = row * scanlineLength;
+          let fullPos = ((y0 + row * dy) * _this.width + x0) * pixelBytes;
+          let partPos = row * scanlineLength;
           for (i = 0; i < w; i += 1) {
-            for (var j = 0; j < pixelBytes; j += 1)
+            for (let j = 0; j < pixelBytes; j += 1)
               fullPixels[fullPos++] = pixels[partPos++];
             fullPos += (dx - 1) * pixelBytes;
           }
@@ -410,7 +410,7 @@ var PNG = (function() {
   };
 
   PNG.prototype.decodePalette = function() {
-    var c, i, length, palette, pos, ret, transparency, _i, _ref, _ref1;
+    let c, i, length, palette, pos, ret, transparency, _i, _ref, _ref1;
     palette = this.palette;
     transparency = this.transparency.indexed || [];
     ret = new Uint8Array((transparency.length || 0) + palette.length);
@@ -427,7 +427,7 @@ var PNG = (function() {
   };
 
   PNG.prototype.copyToImageData = function(imageData, pixels) {
-    var alpha, colors, data, i, input, j, k, length, palette, v, _ref;
+    let alpha, colors, data, i, input, j, k, length, palette, v, _ref;
     colors = this.colors;
     palette = null;
     alpha = this.hasAlphaChannel;
@@ -466,13 +466,13 @@ var PNG = (function() {
   };
 
   PNG.prototype.decode = function() {
-    var ret;
+    let ret;
     ret = new Uint8Array(this.width * this.height * 4);
     this.copyToImageData(ret, this.decodePixels());
     return ret;
   };
 
-  var hasBrowserCanvas = function() {
+  let hasBrowserCanvas = function() {
     if (Object.prototype.toString.call(globalObject) === "[object Window]") {
       try {
         scratchCanvas = globalObject.document.createElement("canvas");
@@ -489,7 +489,7 @@ var PNG = (function() {
 
   makeImage = function(imageData) {
     if (hasBrowserCanvas() === true) {
-      var img;
+      let img;
       scratchCtx.width = imageData.width;
       scratchCtx.height = imageData.height;
       scratchCtx.clearRect(0, 0, imageData.width, imageData.height);
@@ -502,7 +502,7 @@ var PNG = (function() {
   };
 
   PNG.prototype.decodeFrames = function(ctx) {
-    var frame, i, imageData, pixels, _i, _len, _ref, _results;
+    let frame, i, imageData, pixels, _i, _len, _ref, _results;
     if (!this.animation) {
       return;
     }
@@ -520,7 +520,7 @@ var PNG = (function() {
   };
 
   PNG.prototype.renderFrame = function(ctx, number) {
-    var frame, frames, prev;
+    let frame, frames, prev;
     frames = this.animation.frames;
     frame = frames[number];
     prev = frames[number - 1];
@@ -543,7 +543,7 @@ var PNG = (function() {
   };
 
   PNG.prototype.animate = function(ctx) {
-    var doFrame,
+    let doFrame,
       frameNumber,
       frames,
       numFrames,
@@ -556,7 +556,7 @@ var PNG = (function() {
       (frames = _ref.frames),
       (numPlays = _ref.numPlays);
     return (doFrame = function() {
-      var f, frame;
+      let f, frame;
       f = frameNumber++ % numFrames;
       frame = frames[f];
       _this.renderFrame(ctx, f);
@@ -567,14 +567,14 @@ var PNG = (function() {
   };
 
   PNG.prototype.stopAnimation = function() {
-    var _ref;
+    let _ref;
     return clearTimeout(
       (_ref = this.animation) != null ? _ref._timeout : void 0
     );
   };
 
   PNG.prototype.render = function(canvas) {
-    var ctx, data;
+    let ctx, data;
     if (canvas._png) {
       canvas._png.stopAnimation();
     }
