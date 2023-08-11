@@ -34,13 +34,13 @@ describe("Core: Standard Encryption", () => {
     comparePdf(doc.output(), "encrypted_printable.pdf", "encryption");
   });
   it("should display forms properly", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       floatPrecision: 2,
       encryption: {}
     });
     doc.__private__.setFileId("0000000000000000000000000BADFACE");
     doc.__private__.setCreationDate("D:19871210000000+00'00'");
-    var {
+    let {
       ComboBox,
       ListBox,
       CheckBox,
@@ -54,7 +54,7 @@ describe("Core: Standard Encryption", () => {
     doc.setFontSize(12);
     doc.text("ComboBox:", 10, 105);
 
-    var comboBox = new ComboBox();
+    let comboBox = new ComboBox();
     comboBox.fieldName = "ChoiceField1";
     comboBox.topIndex = 1;
     comboBox.Rect = [50, 100, 30, 10];
@@ -64,7 +64,7 @@ describe("Core: Standard Encryption", () => {
     doc.addField(comboBox);
 
     doc.text("ListBox:", 10, 115);
-    var listbox = new ListBox();
+    let listbox = new ListBox();
     listbox.edit = false;
     listbox.fieldName = "ChoiceField2";
     listbox.topIndex = 2;
@@ -74,19 +74,19 @@ describe("Core: Standard Encryption", () => {
     doc.addField(listbox);
 
     doc.text("CheckBox:", 10, 125);
-    var checkBox = new CheckBox();
+    let checkBox = new CheckBox();
     checkBox.fieldName = "CheckBox1";
     checkBox.Rect = [50, 120, 30, 10];
     doc.addField(checkBox);
 
     doc.text("PushButton:", 10, 135);
-    var pushButton = new PushButton();
+    let pushButton = new PushButton();
     pushButton.fieldName = "PushButton1";
     pushButton.Rect = [50, 130, 30, 10];
     doc.addField(pushButton);
 
     doc.text("TextField:", 10, 145);
-    var textField = new TextField();
+    let textField = new TextField();
     textField.Rect = [50, 140, 30, 10];
     textField.multiline = true;
     textField.value =
@@ -95,29 +95,29 @@ describe("Core: Standard Encryption", () => {
     doc.addField(textField);
 
     doc.text("Password:", 10, 155);
-    var passwordField = new PasswordField();
+    let passwordField = new PasswordField();
     passwordField.Rect = [50, 150, 30, 10];
     doc.addField(passwordField);
 
     doc.text("RadioGroup:", 50, 165);
-    var radioGroup = new RadioButton();
+    let radioGroup = new RadioButton();
     radioGroup.value = "Test";
     doc.addField(radioGroup);
-    var radioButton1 = radioGroup.createOption("Test");
+    let radioButton1 = radioGroup.createOption("Test");
     radioButton1.Rect = [50, 170, 30, 10];
     radioButton1.AS = "/Test";
-    var radioButton2 = radioGroup.createOption("Test2");
+    let radioButton2 = radioGroup.createOption("Test2");
     radioButton2.Rect = [50, 180, 30, 10];
-    var radioButton3 = radioGroup.createOption("Test3");
+    let radioButton3 = radioGroup.createOption("Test3");
     radioButton3.Rect = [50, 190, 20, 10];
     radioGroup.setAppearance(Appearance.RadioButton.Cross);
 
     comparePdf(doc.output(), "encrypted_withAcroForm.pdf", "encryption");
   });
   it("colortype_3_indexed_single_colour_alpha_4_bit_png", () => {
-    var colortype_3_indexed_single_colour_alpha_4_bit_png =
+    let colortype_3_indexed_single_colour_alpha_4_bit_png =
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAG1BMVEX/////AAD/pQD//wAA/wAAgAAAgIAAAP+BAIC08EFzAAAAAXRSTlMAQObYZgAAAJtJREFUCB0BkABv/wAREQAAAAAAAAAiIhEQAAAAAAAzMyIhEAAAAABERDMyIQAAAABVVUQzIhAAAABmZlVEMyEAAAB3d2ZVQzIQAACIh3dlVDIhAAAACId2VUMhAAAAAAiHZUMyEAAAAACHdlQyEAAAAAAIdlQyEAAAAAAId2VDIQAAAAAAh2VDIQAAAAAAh2VDIQAAAAAAh2VDIWfgFTHZzlYNAAAAAElFTkSuQmCC";
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
