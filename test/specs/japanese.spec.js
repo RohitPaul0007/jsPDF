@@ -5,7 +5,7 @@ describe("Module: Unicode: Japanese", function() {
   it("Unicode: Japanese - Kana", function() {
     //https://www.freejapanesefont.com/mouhitsu-bold-font-download/
 
-    var MouhitsuBold = loadBinaryResource("reference/MouhitsuBold.ttf");
+    let MouhitsuBold = loadBinaryResource("reference/MouhitsuBold.ttf");
 
     const doc = new jsPDF({ filters: ["ASCIIHexEncode"], floatPrecision: 2 });
 
