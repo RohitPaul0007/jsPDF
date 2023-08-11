@@ -8,7 +8,7 @@
 
 describe("Module: Unicode: Russian", function() {
   beforeAll(loadGlobals);
-  var PTSans = loadBinaryResource("reference/PTSans.ttf");
+  let PTSans = loadBinaryResource("reference/PTSans.ttf");
 
   it("simple pdf with russian text (1 line)", function() {
     const doc = new jsPDF({
