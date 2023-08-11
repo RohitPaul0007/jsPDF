@@ -6,9 +6,9 @@
 describe("Module: Context2D: HTML comparison tests", () => {
   beforeAll(loadGlobals);
   xit("default values like a real 2d-context", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
 
-    var ctx = doc.canvas.getContext("2d");
+    let ctx = doc.canvas.getContext("2d");
 
     expect(ctx.fillStyle).toEqual("#000000");
     expect(ctx.filter).toEqual("none");
