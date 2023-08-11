@@ -14,8 +14,8 @@ describe("Module: Context2D W3School", () => {
   }
 
   it("context2d: w3s fillStyle", () => {
-    var doc = new jsPDF("p", "pt", "a4");
-    var ctx = doc.context2d;
+    let doc = new jsPDF("p", "pt", "a4");
+    let ctx = doc.context2d;
 
     ctx.fillStyle = "#FF0000";
     ctx.fillRect(20, 20, 150, 100);
@@ -24,8 +24,8 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s strokeStyle", () => {
-    var doc = new jsPDF("p", "pt", "a4");
-    var ctx = doc.context2d;
+    let doc = new jsPDF("p", "pt", "a4");
+    let ctx = doc.context2d;
 
     ctx.strokeStyle = "#FF0000";
     ctx.strokeRect(20, 20, 150, 100);
@@ -34,8 +34,8 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s closePath v1", () => {
-    var doc = new jsPDF("p", "pt", "a4");
-    var ctx = doc.context2d;
+    let doc = new jsPDF("p", "pt", "a4");
+    let ctx = doc.context2d;
 
     ctx.beginPath();
     ctx.moveTo(20, 20);
@@ -47,8 +47,8 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s closePath v2", () => {
-    var doc = new jsPDF("p", "pt", "a4");
-    var ctx = doc.context2d;
+    let doc = new jsPDF("p", "pt", "a4");
+    let ctx = doc.context2d;
 
     ctx.beginPath();
     ctx.moveTo(20, 20);
@@ -62,8 +62,8 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s lineCap round", () => {
-    var doc = new jsPDF("p", "pt", "a4");
-    var ctx = doc.context2d;
+    let doc = new jsPDF("p", "pt", "a4");
+    let ctx = doc.context2d;
 
     ctx.beginPath();
     ctx.lineWidth = 10;
@@ -76,8 +76,8 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s lineCap butt", () => {
-    var doc = new jsPDF("p", "pt", "a4");
-    var ctx = doc.context2d;
+    let doc = new jsPDF("p", "pt", "a4");
+    let ctx = doc.context2d;
 
     ctx.beginPath();
     ctx.lineWidth = 10;
@@ -90,8 +90,8 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s lineCap square", () => {
-    var doc = new jsPDF("p", "pt", "a4");
-    var ctx = doc.context2d;
+    let doc = new jsPDF("p", "pt", "a4");
+    let ctx = doc.context2d;
 
     ctx.beginPath();
     ctx.lineWidth = 10;
@@ -104,8 +104,8 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s lineJoin round", () => {
-    var doc = new jsPDF("p", "pt", "a4");
-    var ctx = doc.context2d;
+    let doc = new jsPDF("p", "pt", "a4");
+    let ctx = doc.context2d;
 
     ctx.beginPath();
     ctx.lineWidth = 10;
@@ -119,8 +119,8 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s lineJoin bevel", () => {
-    var doc = new jsPDF("p", "pt", "a4");
-    var ctx = doc.context2d;
+    let doc = new jsPDF("p", "pt", "a4");
+    let ctx = doc.context2d;
 
     ctx.beginPath();
     ctx.lineWidth = 10;
@@ -134,13 +134,13 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s lineJoin miter", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
 
     ctx.beginPath();
     ctx.lineWidth = 10;
@@ -154,13 +154,13 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s lineTo", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.canvas.getContext("2d");
+    let ctx = doc.canvas.getContext("2d");
     ctx.beginPath();
     ctx.moveTo(0, 0);
     ctx.lineTo(300, 150);
@@ -169,13 +169,13 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s arc", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.canvas.getContext("2d");
+    let ctx = doc.canvas.getContext("2d");
     ctx.beginPath();
     ctx.arc(100, 75, 50, 0, 2 * Math.PI);
     ctx.stroke();
@@ -183,13 +183,13 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s bezierCurveTo", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.canvas.getContext("2d");
+    let ctx = doc.canvas.getContext("2d");
     ctx.beginPath();
     ctx.moveTo(20, 20);
     ctx.bezierCurveTo(20, 100, 200, 100, 200, 20);
@@ -198,13 +198,13 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s quadraticCurveTo", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
     ctx.beginPath();
     ctx.moveTo(20, 20);
     ctx.quadraticCurveTo(20, 100, 200, 20);
@@ -213,13 +213,13 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s clip", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
     ctx.rect(50, 20, 200, 120);
     ctx.stroke();
     ctx.clip();
@@ -230,13 +230,13 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s scale", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
 
     ctx.strokeRect(5, 5, 25, 15);
     ctx.scale(2, 2);
@@ -251,13 +251,13 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s rotate", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
 
     ctx.rotate((20 * Math.PI) / 180);
     ctx.fillRect(50, 20, 100, 50);
@@ -265,13 +265,13 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s translate", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
 
     ctx.fillRect(10, 10, 100, 50);
     ctx.translate(70, 70);
@@ -280,13 +280,13 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s transform", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
 
     ctx.fillStyle = "yellow";
     ctx.fillRect(0, 0, 250, 100);
@@ -302,13 +302,13 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s setTransform", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
 
     ctx.fillStyle = "yellow";
     ctx.fillRect(0, 0, 250, 100);
@@ -324,13 +324,13 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s font", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
 
     ctx.font = "30px Arial";
     ctx.fillText("Hello World", 10, 50);
@@ -338,13 +338,13 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s textBaseline", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
 
     //Draw a red line at y=100
     ctx.strokeStyle = "red";
@@ -369,13 +369,13 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s textAlign", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
 
     // Create a red line in position 150
     ctx.strokeStyle = "red";
@@ -400,26 +400,26 @@ describe("Module: Context2D W3School", () => {
   });
 
   it("context2d: w3s fillText", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
     ctx.font = "20px Georgia";
     ctx.fillText("Hello World!", 10, 50);
     comparePdf(doc.output(), "w3s_fillText.pdf", "context2d");
   });
 
   it("context2d: w3s strokeText", () => {
-    var doc = new jsPDF({
+    let doc = new jsPDF({
       orientation: "p",
       unit: "pt",
       format: "a4",
       floatPrecision: 2
     });
-    var ctx = doc.context2d;
+    let ctx = doc.context2d;
     ctx.font = "20px Georgia";
     ctx.strokeText("Hello World!", 10, 50);
     comparePdf(doc.output(), "w3s_strokeText.pdf", "context2d");
