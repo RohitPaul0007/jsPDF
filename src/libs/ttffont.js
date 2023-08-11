@@ -72,10 +72,10 @@ jsPDF.API.TTFFont = (function() {
   /* comment : Get the value to assign pdf font descriptors.     */
   /***************************************************************/
   TTFFont.prototype.registerTTF = function() {
-    var e, hi, low, raw, _ref;
+    let e, hi, low, raw, _ref;
     this.scaleFactor = 1000.0 / this.head.unitsPerEm;
     this.bbox = function() {
-      var _i, _len, _ref, _results;
+      let _i, _len, _ref, _results;
       _ref = this.bbox;
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -129,19 +129,19 @@ jsPDF.API.TTFFont = (function() {
     }
   };
   TTFFont.prototype.characterToGlyph = function(character) {
-    var _ref;
+    let _ref;
     return (
       ((_ref = this.cmap.unicode) != null ? _ref.codeMap[character] : void 0) ||
       0
     );
   };
   TTFFont.prototype.widthOfGlyph = function(glyph) {
-    var scale;
+    let scale;
     scale = 1000.0 / this.head.unitsPerEm;
     return this.hmtx.forGlyph(glyph).advance * scale;
   };
   TTFFont.prototype.widthOfString = function(string, size, charSpace) {
-    var charCode, i, scale, width, _ref;
+    let charCode, i, scale, width, _ref;
     string = "" + string;
     width = 0;
     for (
@@ -158,7 +158,7 @@ jsPDF.API.TTFFont = (function() {
     return width * scale;
   };
   TTFFont.prototype.lineHeight = function(size, includeGap) {
-    var gap;
+    let gap;
     if (includeGap == null) {
       includeGap = false;
     }
@@ -172,7 +172,7 @@ jsPDF.API.TTFFont = (function() {
 /* function : Data                                                                              */
 /* comment : The ttf data decoded and stored in an array is read and written to the Data object.*/
 /************************************************************************************************/
-var Data = (function() {
+let Data = (function() {
   function Data(data) {
     this.data = data != null ? data : [];
     this.pos = 0;
@@ -185,7 +185,7 @@ var Data = (function() {
     return (this.data[this.pos++] = byte);
   };
   Data.prototype.readUInt32 = function() {
-    var b1, b2, b3, b4;
+    let b1, b2, b3, b4;
     b1 = this.readByte() * 0x1000000;
     b2 = this.readByte() << 16;
     b3 = this.readByte() << 8;
@@ -199,7 +199,7 @@ var Data = (function() {
     return this.writeByte(val & 0xff);
   };
   Data.prototype.readInt32 = function() {
-    var int;
+    let int;
     int = this.readUInt32();
     if (int >= 0x80000000) {
       return int - 0x100000000;
@@ -214,7 +214,7 @@ var Data = (function() {
     return this.writeUInt32(val);
   };
   Data.prototype.readUInt16 = function() {
-    var b1, b2;
+    let b1, b2;
     b1 = this.readByte() << 8;
     b2 = this.readByte();
     return b1 | b2;
@@ -224,7 +224,7 @@ var Data = (function() {
     return this.writeByte(val & 0xff);
   };
   Data.prototype.readInt16 = function() {
-    var int;
+    let int;
     int = this.readUInt16();
     if (int >= 0x8000) {
       return int - 0x10000;
@@ -239,7 +239,7 @@ var Data = (function() {
     return this.writeUInt16(val);
   };
   Data.prototype.readString = function(length) {
-    var i, ret;
+    let i, ret;
     ret = [];
     for (
       i = 0;
@@ -251,7 +251,7 @@ var Data = (function() {
     return ret.join("");
   };
   Data.prototype.writeString = function(val) {
-    var i, _ref, _results;
+    let i, _ref, _results;
     _results = [];
     for (
       i = 0, _ref = val.length;
@@ -273,7 +273,7 @@ var Data = (function() {
     return this.writeInt16(val);
   };
   Data.prototype.readLongLong = function() {
-    var b1, b2, b3, b4, b5, b6, b7, b8;
+    let b1, b2, b3, b4, b5, b6, b7, b8;
     b1 = this.readByte();
     b2 = this.readByte();
     b3 = this.readByte();
@@ -308,7 +308,7 @@ var Data = (function() {
     );
   };
   Data.prototype.writeLongLong = function(val) {
-    var high, low;
+    let high, low;
     high = Math.floor(val / 0x100000000);
     low = val & 0xffffffff;
     this.writeByte((high >> 24) & 0xff);
@@ -330,7 +330,7 @@ var Data = (function() {
             return this.data.slice(start, end);
         };*/
   Data.prototype.read = function(bytes) {
-    var buf, i;
+    let buf, i;
     buf = [];
     for (
       i = 0;
@@ -342,7 +342,7 @@ var Data = (function() {
     return buf;
   };
   Data.prototype.write = function(bytes) {
-    var byte, i, _len, _results;
+    let byte, i, _len, _results;
     _results = [];
     for (i = 0, _len = bytes.length; i < _len; i++) {
       byte = bytes[i];
@@ -353,8 +353,8 @@ var Data = (function() {
   return Data;
 })();
 
-var Directory = (function() {
-  var checksum;
+let Directory = (function() {
+  let checksum;
 
   /*****************************************************************************************************/
   /* function : Directory generator                                                                    */
@@ -387,7 +387,7 @@ var Directory = (function() {
   /* comment : It encodes and stores the font table object and information used for the directory object. */
   /********************************************************************************************************/
   Directory.prototype.encode = function(tables) {
-    var adjustment,
+    let adjustment,
       directory,
       directoryLength,
       entrySelector,
