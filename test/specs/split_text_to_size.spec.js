@@ -7,7 +7,7 @@
 describe("Module: split_text_to_size", () => {
   beforeAll(loadGlobals);
   it("getStringUnitWidth", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     doc.setFont("Courier");
 
     expect(doc.getStringUnitWidth("Lorem Ipsum")).toEqual(6.599999999999999);
@@ -28,7 +28,7 @@ describe("Module: split_text_to_size", () => {
   });
 
   it("getTextWidth", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     doc.setFont("Courier");
 
     expect(doc.getTextWidth("Lorem Ipsum")).toEqual(37.25333333333332);
@@ -49,10 +49,10 @@ describe("Module: split_text_to_size", () => {
   });
 
   it("getCharWidthsArray", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     doc.setFont("Courier");
 
-    for (var i = 0; i < "Lorem Ipsum".length; i++) {
+    for (let i = 0; i < "Lorem Ipsum".length; i++) {
       expect(doc.getCharWidthsArray("Lorem Ipsum")[i]).toEqual(0.6);
     }
 
@@ -72,7 +72,7 @@ describe("Module: split_text_to_size", () => {
   });
 
   it("getCharWidthsArray with kerning", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     // check fixed width font
     doc.setFont("Courier");
 
@@ -124,7 +124,7 @@ describe("Module: split_text_to_size", () => {
   });
 
   it("splitTextToSize", () => {
-    var doc = new jsPDF();
+    let doc = new jsPDF();
     doc.setFont("Courier");
 
     expect(
