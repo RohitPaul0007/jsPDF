@@ -9,13 +9,13 @@
 /**
  * An easy way to view PDF and PDF source code side by side.
  */
-var pdf_test_harness_init = function(pdf, message) {
-  var harness = new pdf_test_harness();
+let pdf_test_harness_init = function(pdf, message) {
+  let harness = new pdf_test_harness();
 
-  var body = document.body;
+  let body = document.body;
   body.style.display = "flex";
 
-  var div = document.createElement("div");
+  let div = document.createElement("div");
   div.setAttribute(
     "style",
     "position:fixed;height:20px;left:0;right:0;background:lightblue"
@@ -23,7 +23,7 @@ var pdf_test_harness_init = function(pdf, message) {
   body.appendChild(div);
   harness.header = div;
 
-  var div2 = document.createElement("div");
+  let div2 = document.createElement("div");
   div2.setAttribute(
     "style",
     "position:fixed;display:flex;top:20px; bottom:0;left:0;right:0"
@@ -31,33 +31,33 @@ var pdf_test_harness_init = function(pdf, message) {
   body.appendChild(div2);
   harness.body = div2;
 
-  var btn1 = document.createElement("input");
+  let btn1 = document.createElement("input");
   btn1.setAttribute("type", "radio");
   btn1.setAttribute("name", "view");
   div.appendChild(btn1);
   btn1.checked = true;
 
-  var lbl1 = document.createElement("label");
+  let lbl1 = document.createElement("label");
   lbl1.setAttribute("for", "btn1");
   lbl1.innerHTML = "PDF";
   div.appendChild(lbl1);
 
-  var btn2 = document.createElement("input");
+  let btn2 = document.createElement("input");
   btn2.setAttribute("type", "radio");
   btn2.setAttribute("name", "view");
   div.appendChild(btn2);
 
-  var lbl2 = document.createElement("label");
+  let lbl2 = document.createElement("label");
   lbl2.setAttribute("for", "btn2");
   lbl2.innerHTML = "Source";
   div.appendChild(lbl2);
 
-  var btn3 = document.createElement("input");
+  let btn3 = document.createElement("input");
   btn3.setAttribute("type", "radio");
   btn3.setAttribute("name", "view");
   div.appendChild(btn3);
 
-  var lbl3 = document.createElement("label");
+  let lbl3 = document.createElement("label");
   lbl3.setAttribute("for", "btn3");
   lbl3.innerHTML = "Both";
   div.appendChild(lbl3);
@@ -81,7 +81,7 @@ var pdf_test_harness_init = function(pdf, message) {
   if (message) {
     message +=
       "<p style='text-align:center;font-style:italic;font-size:.8em'>click to close</p>";
-    var popup = document.createElement("div");
+    let popup = document.createElement("div");
     popup.setAttribute(
       "style",
       "z-index:100;margin:100px auto;cursor:pointer;font-size:1.3em;top:50px;background-color:rgb(243, 224, 141);padding:1em;border:1px solid black"
@@ -135,7 +135,7 @@ var pdf_test_harness = function(pdf) {
 
   this.getParameterByName = function(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    let regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
       results = regex.exec(location.search);
     return results === null
       ? ""
