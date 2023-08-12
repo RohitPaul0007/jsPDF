@@ -1,6 +1,6 @@
-var generateData = function(amount) {
-  var result = [];
-  var data = {
+let generateData = function(amount) {
+  let result = [];
+  let data = {
     coin: "100",
     game_group: "GameGroup",
     game_name: "XPTO2",
@@ -8,7 +8,7 @@ var generateData = function(amount) {
     machine: "20485861",
     vlt: "0"
   };
-  for (var i = 0; i < amount; i += 1) {
+  for (let i = 0; i < amount; i += 1) {
     data.id = (i + 1).toString();
     result.push(Object.assign({}, data));
   }
@@ -16,8 +16,8 @@ var generateData = function(amount) {
 };
 
 function createHeaders(keys) {
-  var result = [];
-  for (var i = 0; i < keys.length; i += 1) {
+  let result = [];
+  for (let i = 0; i < keys.length; i += 1) {
     result.push({
       id: keys[i],
       name: keys[i],
@@ -30,7 +30,7 @@ function createHeaders(keys) {
   return result;
 }
 
-var headers = createHeaders([
+let headers = createHeaders([
   "id",
   "coin",
   "game_group",
@@ -40,5 +40,5 @@ var headers = createHeaders([
   "vlt"
 ]);
 
-var doc = new jsPDF({ putOnlyUsedFonts: true, orientation: "landscape" });
+let doc = new jsPDF({ putOnlyUsedFonts: true, orientation: "landscape" });
 doc.table(1, 1, generateData(100), headers, { autoSize: true });
