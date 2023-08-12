@@ -6,13 +6,13 @@ function toLookup(arr) {
   }, {});
 }
 
-var fontStyleOrder = {
+let fontStyleOrder = {
   italic: ["italic", "oblique", "normal"],
   oblique: ["oblique", "italic", "normal"],
   normal: ["normal", "oblique", "italic"]
 };
 
-var fontStretchOrder = [
+let fontStretchOrder = [
   "ultra-condensed",
   "extra-condensed",
   "condensed",
@@ -26,10 +26,10 @@ var fontStretchOrder = [
 
 // For a given font-stretch value, we need to know where to start our search
 // from in the fontStretchOrder list.
-var fontStretchLookup = toLookup(fontStretchOrder);
+let fontStretchLookup = toLookup(fontStretchOrder);
 
-var fontWeights = [100, 200, 300, 400, 500, 600, 700, 800, 900];
-var fontWeightsLookup = toLookup(fontWeights);
+let fontWeights = [100, 200, 300, 400, 500, 600, 700, 800, 900];
+let fontWeightsLookup = toLookup(fontWeights);
 
 function normalizeFontStretch(stretch) {
   stretch = stretch || "normal";
@@ -68,11 +68,11 @@ function normalizeFontWeight(weight) {
 }
 
 export function normalizeFontFace(fontFace) {
-  var family = fontFace.family.replace(/"|'/g, "").toLowerCase();
+  let family = fontFace.family.replace(/"|'/g, "").toLowerCase();
 
-  var style = normalizeFontStyle(fontFace.style);
-  var weight = normalizeFontWeight(fontFace.weight);
-  var stretch = normalizeFontStretch(fontFace.stretch);
+  let style = normalizeFontStyle(fontFace.style);
+  let weight = normalizeFontWeight(fontFace.weight);
+  let stretch = normalizeFontStretch(fontFace.stretch);
 
   return {
     family: family,
@@ -96,15 +96,15 @@ export function normalizeFontFace(fontFace) {
  * @private
  */
 export function buildFontFaceMap(fontFaces) {
-  var map = {};
+  let map = {};
 
   for (var i = 0; i < fontFaces.length; ++i) {
-    var normalized = normalizeFontFace(fontFaces[i]);
+    let normalized = normalizeFontFace(fontFaces[i]);
 
-    var name = normalized.family;
-    var stretch = normalized.stretch;
-    var style = normalized.style;
-    var weight = normalized.weight;
+    let name = normalized.family;
+    let stretch = normalized.stretch;
+    let style = normalized.style;
+    let weight = normalized.weight;
 
     map[name] = map[name] || {};
 
@@ -128,7 +128,7 @@ export function buildFontFaceMap(fontFaces) {
  */
 
 function searchFromPivot(matchingSet, order, pivot, dir) {
-  var i;
+  let i;
 
   for (i = pivot; i >= 0 && i < order.length; i += dir) {
     if (matchingSet[order[i]]) {
@@ -148,12 +148,12 @@ function resolveFontStretch(stretch, matchingSet) {
     return matchingSet[stretch];
   }
 
-  var pivot = fontStretchLookup[stretch];
+  let pivot = fontStretchLookup[stretch];
 
   // If the font-stretch value is normal or more condensed, we want to
   // start with a descending search, otherwise we should do ascending.
-  var dir = pivot <= fontStretchLookup["normal"] ? -1 : 1;
-  var match = searchFromPivot(matchingSet, fontStretchOrder, pivot, dir);
+  let dir = pivot <= fontStretchLookup["normal"] ? -1 : 1;
+  let match = searchFromPivot(matchingSet, fontStretchOrder, pivot, dir);
 
   if (!match) {
     // Since a font-family cannot exist without having at least one stretch value
@@ -171,9 +171,9 @@ function resolveFontStyle(fontStyle, matchingSet) {
     return matchingSet[fontStyle];
   }
 
-  var ordering = fontStyleOrder[fontStyle];
+  let ordering = fontStyleOrder[fontStyle];
 
-  for (var i = 0; i < ordering.length; ++i) {
+  for (let i = 0; i < ordering.length; ++i) {
     if (matchingSet[ordering[i]]) {
       return matchingSet[ordering[i]];
     }
@@ -197,12 +197,12 @@ function resolveFontWeight(weight, matchingSet) {
     return matchingSet[400];
   }
 
-  var pivot = fontWeightsLookup[weight];
+  let pivot = fontWeightsLookup[weight];
 
   // If the font-stretch value is normal or more condensed, we want to
   // start with a descending search, otherwise we should do ascending.
-  var dir = weight < 400 ? -1 : 1;
-  var match = searchFromPivot(matchingSet, fontWeights, pivot, dir);
+  let dir = weight < 400 ? -1 : 1;
+  let match = searchFromPivot(matchingSet, fontWeights, pivot, dir);
 
   if (!match) {
     // Since a font-family cannot exist without having at least one stretch value
@@ -215,7 +215,7 @@ function resolveFontWeight(weight, matchingSet) {
   return match;
 }
 
-var defaultGenericFontFamilies = {
+let defaultGenericFontFamilies = {
   "sans-serif": "helvetica",
   fixed: "courier",
   monospace: "courier",
@@ -225,7 +225,7 @@ var defaultGenericFontFamilies = {
   serif: "times"
 };
 
-var systemFonts = {
+let systemFonts = {
   caption: "times",
   icon: "times",
   menu: "times",
@@ -241,17 +241,17 @@ function ruleToString(rule) {
 export function resolveFontFace(fontFaceMap, rules, opts) {
   opts = opts || {};
 
-  var defaultFontFamily = opts.defaultFontFamily || "times";
-  var genericFontFamilies = Object.assign(
+  let defaultFontFamily = opts.defaultFontFamily || "times";
+  let genericFontFamilies = Object.assign(
     {},
     defaultGenericFontFamilies,
     opts.genericFontFamilies || {}
   );
 
-  var rule = null;
-  var matches = null;
+  let rule = null;
+  let matches = null;
 
-  for (var i = 0; i < rules.length; ++i) {
+  for (let i = 0; i < rules.length; ++i) {
     rule = normalizeFontFace(rules[i]);
 
     if (genericFontFamilies[rule.family]) {
@@ -308,10 +308,10 @@ function eatWhiteSpace(input) {
 }
 
 function parseQuotedFontFamily(input, quote) {
-  var index = 0;
+  let index = 0;
 
   while (index < input.length) {
-    var current = input.charAt(index);
+    let current = input.charAt(index);
 
     if (current === quote) {
       return [input.substring(0, index), input.substring(index + 1)];
@@ -333,7 +333,7 @@ function parseNonQuotedFontFamily(input) {
   // -[a-z_]     - when identifier starts with a hyphen, you're not allowed to have another hyphen or a digit
   // [a-z_]      - allow a-z and underscore at beginning of input
   // [a-z0-9_-]* - after that, anything goes
-  var match = input.match(/^(-[a-z_]|[a-z_])[a-z0-9_-]*/i);
+  let match = input.match(/^(-[a-z_]|[a-z_])[a-z0-9_-]*/i);
 
   // non quoted value contains illegal characters
   if (match === null) {
@@ -343,12 +343,12 @@ function parseNonQuotedFontFamily(input) {
   return [match[0], input.substring(match[0].length)];
 }
 
-var defaultFont = ["times"];
+let defaultFont = ["times"];
 
 export function parseFontFamily(input) {
-  var result = [];
-  var ch, parsed;
-  var remaining = input.trim();
+  let result = [];
+  let ch, parsed;
+  let remaining = input.trim();
 
   if (remaining === "") {
     return defaultFont;
