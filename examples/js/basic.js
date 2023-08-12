@@ -1,6 +1,6 @@
 /* global jsPDF */
 function demoTwoPageDocument() {
-  var doc = new jsPDF();
+  let doc = new jsPDF();
   doc.text(20, 20, "Hello world!");
   doc.text(20, 30, "This is client-side Javascript, pumping out a PDF.");
   doc.addPage();
@@ -11,7 +11,7 @@ function demoTwoPageDocument() {
 }
 
 function demoLandscape() {
-  var doc = new jsPDF("landscape");
+  let doc = new jsPDF("landscape");
   doc.text(20, 20, "Hello landscape world!");
 
   // Save the PDF
@@ -19,7 +19,7 @@ function demoLandscape() {
 }
 
 function demoFontSizes() {
-  var doc = new jsPDF();
+  let doc = new jsPDF();
   doc.setFontSize(22);
   doc.text(20, 20, "This is a title");
 
@@ -30,7 +30,7 @@ function demoFontSizes() {
 }
 
 function demoFontTypes() {
-  var doc = new jsPDF();
+  let doc = new jsPDF();
 
   doc.text(20, 20, "This is the default font.");
 
@@ -54,7 +54,7 @@ function demoFontTypes() {
 }
 
 function demoTextColors() {
-  var doc = new jsPDF();
+  let doc = new jsPDF();
 
   doc.setTextColor(100);
   doc.text(20, 20, "This is gray.");
@@ -76,7 +76,7 @@ function demoTextColors() {
 }
 
 function demoMetadata() {
-  var doc = new jsPDF();
+  let doc = new jsPDF();
   doc.text(
     20,
     20,
@@ -96,17 +96,17 @@ function demoMetadata() {
 }
 
 function demoUserInput() {
-  var name = prompt("What is your name?");
-  var multiplier = prompt("Enter a number:");
+  let name = prompt("What is your name?");
+  let multiplier = prompt("Enter a number:");
   multiplier = parseInt(multiplier);
 
-  var doc = new jsPDF();
+  let doc = new jsPDF();
   doc.setFontSize(22);
   doc.text(20, 20, "Questions");
   doc.setFontSize(16);
   doc.text(20, 30, "This belongs to: " + name);
 
-  for (var i = 1; i <= 12; i++) {
+  for (let i = 1; i <= 12; i++) {
     doc.text(20, 30 + i * 10, i + " x " + multiplier + " = ___");
   }
 
