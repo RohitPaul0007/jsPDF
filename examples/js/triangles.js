@@ -1,4 +1,4 @@
-var doc = new jsPDF();
+let doc = new jsPDF();
 
 doc.triangle(60, 100, 60, 120, 80, 110, "FD");
 
