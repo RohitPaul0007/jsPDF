@@ -25,8 +25,8 @@
 import { unzlibSync } from "./fflate.js";
 import { globalObject } from "./globalObject.js";
 
-var PNG = (function() {
-  var APNG_BLEND_OP_OVER,
+let PNG = (function() {
+  let APNG_BLEND_OP_OVER,
     APNG_BLEND_OP_SOURCE,
     APNG_DISPOSE_OP_BACKGROUND,
     APNG_DISPOSE_OP_NONE,
@@ -72,7 +72,7 @@ var PNG = (function() {
     while (true) {
       chunkSize = this.readUInt32();
       section = function() {
-        var _i, _results;
+        let _i, _results;
         _results = [];
         for (i = _i = 0; _i < 4; i = ++_i) {
           _results.push(String.fromCharCode(this.data[this.pos++]));
@@ -234,7 +234,7 @@ var PNG = (function() {
   };
 
   PNG.prototype.readUInt16 = function() {
-    var b1, b2;
+    let b1, b2;
     b1 = this.data[this.pos++] << 8;
     b2 = this.data[this.pos++];
     return b1 | b2;
