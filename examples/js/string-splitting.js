@@ -2,7 +2,7 @@
  * Let's demonstrate string splitting with the first page of Shakespeare's Romeo and Juliet!
  * We'll use a 8.5 x 11 inch sheet, measuring everything in inches.
  */
-var pageWidth = 8.5,
+let pageWidth = 8.5,
   lineHeight = 1.2,
   margin = 0.5,
   maxLineWidth = pageWidth - margin * 2,
@@ -31,7 +31,7 @@ var pageWidth = 8.5,
 
 // splitTextToSize takes your string and turns it in to an array of strings,
 // each of which can be displayed within the specified maxLineWidth.
-var textLines = doc
+let textLines = doc
   .setFont("helvetica")
   .setFontSize(fontSize)
   .splitTextToSize(text, maxLineWidth);
@@ -40,7 +40,7 @@ var textLines = doc
 doc.text(textLines, margin, margin + 2 * oneLineHeight);
 
 // You can also calculate the height of the text very simply:
-var textHeight = (textLines.length * fontSize * lineHeight) / ptsPerInch;
+let textHeight = (textLines.length * fontSize * lineHeight) / ptsPerInch;
 doc
   .setFont("Helvetica", "bold")
   .text(
