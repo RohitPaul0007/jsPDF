@@ -46,7 +46,7 @@ function download(url, name, opts) {
 }
 
 function corsEnabled(url) {
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   // use sync to avoid popup blocker
   xhr.open("HEAD", url, false);
   try {
@@ -60,7 +60,7 @@ function click(node) {
   try {
     node.dispatchEvent(new MouseEvent("click"));
   } catch (e) {
-    var evt = document.createEvent("MouseEvents");
+    let evt = document.createEvent("MouseEvents");
     evt.initMouseEvent(
       "click",
       true,
@@ -82,7 +82,7 @@ function click(node) {
   }
 }
 
-var saveAs =
+let saveAs =
   _global.saveAs ||
   // probably in some web worker
   (typeof window !== "object" || window !== _global
@@ -93,8 +93,8 @@ var saveAs =
     typeof HTMLAnchorElement !== "undefined" &&
       "download" in HTMLAnchorElement.prototype
     ? function saveAs(blob, name, opts) {
-        var URL = _global.URL || _global.webkitURL;
-        var a = document.createElement("a");
+        let URL = _global.URL || _global.webkitURL;
+        let a = document.createElement("a");
         name = name || blob.name || "download";
 
         a.download = name;
@@ -133,7 +133,7 @@ var saveAs =
           if (corsEnabled(blob)) {
             download(blob, name, opts);
           } else {
-            var a = document.createElement("a");
+            let a = document.createElement("a");
             a.href = blob;
             a.target = "_blank";
             setTimeout(function() {
@@ -156,19 +156,19 @@ var saveAs =
 
         if (typeof blob === "string") return download(blob, name, opts);
 
-        var force = blob.type === "application/octet-stream";
-        var isSafari =
+        let force = blob.type === "application/octet-stream";
+        let isSafari =
           /constructor/i.test(_global.HTMLElement) || _global.safari;
-        var isChromeIOS = /CriOS\/[\d]+/.test(navigator.userAgent);
+        let isChromeIOS = /CriOS\/[\d]+/.test(navigator.userAgent);
 
         if (
           (isChromeIOS || (force && isSafari)) &&
           typeof FileReader === "object"
         ) {
           // Safari doesn't allow downloading of blob URLs
-          var reader = new FileReader();
+          let reader = new FileReader();
           reader.onloadend = function() {
-            var url = reader.result;
+            let url = reader.result;
             url = isChromeIOS
               ? url
               : url.replace(/^data:[^;]*;/, "data:attachment/file;");
@@ -178,8 +178,8 @@ var saveAs =
           };
           reader.readAsDataURL(blob);
         } else {
-          var URL = _global.URL || _global.webkitURL;
-          var url = URL.createObjectURL(blob);
+          let URL = _global.URL || _global.webkitURL;
+          let url = URL.createObjectURL(blob);
           if (popup) popup.location = url;
           else location.href = url;
           popup = null; // reverse-tabnabbing #460
