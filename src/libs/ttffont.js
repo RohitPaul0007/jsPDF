@@ -25,7 +25,7 @@ jsPDF.API.TTFFont = (function() {
   /* Subset object is created, and registerTTF function is called.*/
   /***************************************************************/
   function TTFFont(rawData) {
-    var data;
+    let data;
     this.rawData = rawData;
     data = this.contents = new Data(rawData);
     this.contents.pos = 4;
