@@ -13,7 +13,7 @@
 import { md5Bin } from "./md5.js";
 import { rc4 } from "./rc4.js";
 
-var permissionOptions = {
+let permissionOptions = {
   print: 4,
   modify: 8,
   copy: 16,
@@ -107,7 +107,7 @@ PDFSecurity.prototype.toHexString = function(byteString) {
  * @returns {String}
  */
 PDFSecurity.prototype.hexToBytes = function(hex) {
-  for (var bytes = [], c = 0; c < hex.length; c += 2)
+  for (let bytes = [], c = 0; c < hex.length; c += 2)
     bytes.push(String.fromCharCode(parseInt(hex.substr(c, 2), 16)));
   return bytes.join("");
 };
