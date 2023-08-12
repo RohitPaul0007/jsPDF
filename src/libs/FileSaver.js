@@ -33,7 +33,7 @@ function bom(blob, opts) {
 }
 
 function download(url, name, opts) {
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   xhr.open("GET", url);
   xhr.responseType = "blob";
   xhr.onload = function() {
