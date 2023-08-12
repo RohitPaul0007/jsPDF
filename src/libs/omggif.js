@@ -32,17 +32,17 @@
 import { console } from "./console.js";
 
 function GifWriter(buf, width, height, gopts) {
-  var p = 0;
+  let p = 0;
 
-  var gopts = gopts === undefined ? {} : gopts;
-  var loop_count = gopts.loop === undefined ? null : gopts.loop;
-  var global_palette = gopts.palette === undefined ? null : gopts.palette;
+  let gopts = gopts === undefined ? {} : gopts;
+  let loop_count = gopts.loop === undefined ? null : gopts.loop;
+  let global_palette = gopts.palette === undefined ? null : gopts.palette;
 
   if (width <= 0 || height <= 0 || width > 65535 || height > 65535)
     throw new Error("Width/Height invalid.");
 
   function check_palette_and_num_colors(palette) {
-    var num_colors = palette.length;
+    let num_colors = palette.length;
     if (num_colors < 2 || num_colors > 256 || num_colors & (num_colors - 1)) {
       throw new Error(
         "Invalid code/color length, must be power of 2 and 2 .. 256."
@@ -60,10 +60,10 @@ function GifWriter(buf, width, height, gopts) {
   buf[p++] = 0x61; // 89a
 
   // Handling of Global Color Table (palette) and background index.
-  var gp_num_colors_pow2 = 0;
-  var background = 0;
+  let gp_num_colors_pow2 = 0;
+  let background = 0;
   if (global_palette !== null) {
-    var gp_num_colors = check_palette_and_num_colors(global_palette);
+    let gp_num_colors = check_palette_and_num_colors(global_palette);
     while ((gp_num_colors >>= 1)) ++gp_num_colors_pow2;
     gp_num_colors = 1 << gp_num_colors_pow2;
     --gp_num_colors_pow2;
