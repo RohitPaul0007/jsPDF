@@ -1,4 +1,4 @@
-var doc = new jsPDF({
+let doc = new jsPDF({
   // jsPDF supports encryption of PDF version 1.3.
   // Version 1.3 just uses RC4 40-bit which is kown to be weak and is NOT state of the art.
   // Keep in mind that it is just a minimal protection.
