@@ -1,4 +1,4 @@
-var doc = new jsPDF();
+let doc = new jsPDF();
 
 doc.line(20, 20, 60, 20); // horizontal line
 
