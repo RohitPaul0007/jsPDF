@@ -1,4 +1,4 @@
-var doc = new jsPDF();
+let doc = new jsPDF();
 
 doc.text("This is the default font.", 20, 20);
 
