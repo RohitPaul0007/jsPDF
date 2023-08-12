@@ -11,10 +11,10 @@ function toPDFName(str) {
       "Invalid PDF Name Object: " + str + ", Only accept ASCII characters."
     );
   }
-  var result = "",
+  let result = "",
     strLength = str.length;
-  for (var i = 0; i < strLength; i++) {
-    var charCode = str.charCodeAt(i);
+  for (let i = 0; i < strLength; i++) {
+    let charCode = str.charCodeAt(i);
     if (
       charCode < 0x21 ||
       charCode === 0x23 /* # */ ||
@@ -34,7 +34,7 @@ function toPDFName(str) {
       // "\t"    9           9        09               #09
       // " "     32          20       20               #20
       // "©"     169         a9       a9               #a9
-      var hexStr = charCode.toString(16),
+      let hexStr = charCode.toString(16),
         paddingHexStr = ("0" + hexStr).slice(-2);
 
       result += "#" + paddingHexStr;
