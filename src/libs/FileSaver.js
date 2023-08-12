@@ -33,7 +33,7 @@ function bom(blob, opts) {
 }
 
 function download(url, name, opts) {
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   xhr.open("GET", url);
   xhr.responseType = "blob";
   xhr.onload = function() {
@@ -46,7 +46,7 @@ function download(url, name, opts) {
 }
 
 function corsEnabled(url) {
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   // use sync to avoid popup blocker
   xhr.open("HEAD", url, false);
   try {
@@ -60,7 +60,7 @@ function click(node) {
   try {
     node.dispatchEvent(new MouseEvent("click"));
   } catch (e) {
-    var evt = document.createEvent("MouseEvents");
+    let evt = document.createEvent("MouseEvents");
     evt.initMouseEvent(
       "click",
       true,
@@ -82,7 +82,7 @@ function click(node) {
   }
 }
 
-var saveAs =
+let saveAs =
   _global.saveAs ||
   // probably in some web worker
   (typeof window !== "object" || window !== _global
@@ -93,8 +93,8 @@ var saveAs =
     typeof HTMLAnchorElement !== "undefined" &&
       "download" in HTMLAnchorElement.prototype
     ? function saveAs(blob, name, opts) {
-        var URL = _global.URL || _global.webkitURL;
-        var a = document.createElement("a");
+        let URL = _global.URL || _global.webkitURL;
+        let a = document.createElement("a");
         name = name || blob.name || "download";
 
         a.download = name;
