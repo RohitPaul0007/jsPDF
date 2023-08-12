@@ -26,8 +26,8 @@ function WebPDecoder(imageData) {
    * Author: Dominik Homberger (dominik.homberger@gmail.com)
    */
 
-  var self = this;
-  var UpsampleRgbLinePair,
+  let self = this;
+  let UpsampleRgbLinePair,
     UpsampleBgrLinePair,
     UpsampleRgbaLinePair,
     UpsampleBgraLinePair,
@@ -40,53 +40,53 @@ function WebPDecoder(imageData) {
     if (!F) throw Error("assert :P");
   }
   function fa(F, L, J) {
-    for (var H = 0; 4 > H; H++) if (F[L + H] != J.charCodeAt(H)) return !0;
+    for (let H = 0; 4 > H; H++) if (F[L + H] != J.charCodeAt(H)) return !0;
     return !1;
   }
   function I(F, L, J, H, Z) {
-    for (var O = 0; O < Z; O++) F[L + O] = J[H + O];
+    for (let O = 0; O < Z; O++) F[L + O] = J[H + O];
   }
   function M(F, L, J, H) {
-    for (var Z = 0; Z < H; Z++) F[L + Z] = J;
+    for (let Z = 0; Z < H; Z++) F[L + Z] = J;
   }
   function V(F) {
     return new Int32Array(F);
   }
   function wa(F, L) {
-    for (var J = [], H = 0; H < F; H++) J.push(new L());
+    for (let J = [], H = 0; H < F; H++) J.push(new L());
     return J;
   }
   function wb() {
     function F(J, H, Z) {
-      for (var O = Z[H], L = 0; L < O; L++) {
+      for (let O = Z[H], L = 0; L < O; L++) {
         J.push(Z.length > H + 1 ? [] : 0);
         if (Z.length < H + 1) break;
         F(J[L], H + 1, Z);
       }
     }
-    var L = [];
+    let L = [];
     F(L, 0, [3, 11]);
     return L;
   }
   function Ed(F, L) {
     function J(H, O, F) {
-      for (var Z = F[O], ma = 0; ma < Z; ma++) {
+      for (let Z = F[O], ma = 0; ma < Z; ma++) {
         H.push(F.length > O + 1 ? [] : new L());
         if (F.length < O + 1) break;
         J(H[ma], O + 1, F);
       }
     }
-    var H = [];
+    let H = [];
     J(H, 0, F);
     return H;
   }
-  var _WebPDecoder = function() {
-    var self = this;
+  let _WebPDecoder = function() {
+    let self = this;
     function F() {
       V(55);
     }
     function L(a, b) {
-      for (var c = (1 << (b - 1)) >>> 0; a & c; ) c >>>= 1;
+      for (let c = (1 << (b - 1)) >>> 0; a & c; ) c >>>= 1;
       return c ? (a & (c - 1)) + c : a;
     }
     function J(a, b, c, d, e) {
@@ -95,7 +95,7 @@ function WebPDecoder(imageData) {
       while (0 < d);
     }
     function H(a, b, c, d, e, f) {
-      var g = b,
+      let g = b,
         h = 1 << c,
         k,
         l,
@@ -118,7 +118,7 @@ function WebPDecoder(imageData) {
       for (l = 0; l < e; ++l) (k = d[l]), 0 < d[l] && (f[n[k]++] = l);
       if (1 == n[15])
         return (d = new O()), (d.g = 0), (d.value = f[0]), J(a, g, 1, h, d), h;
-      var r = -1,
+      let r = -1,
         q = h - 1,
         t = 0,
         v = 1,
@@ -173,7 +173,7 @@ function WebPDecoder(imageData) {
     }
     function Z(a, b, c, d, e) {
       x(2328 >= e);
-      if (512 >= e) var f = V(512);
+      if (512 >= e) let f = V(512);
       else if (((f = V(e)), null == f)) return 0;
       return H(a, b, c, d, e, f);
     }
@@ -205,15 +205,15 @@ function WebPDecoder(imageData) {
       Qa(a);
     }
     function na(a, b) {
-      for (var c = 0; 0 < b--; ) c |= K(a, 128) << b;
+      for (let c = 0; 0 < b--; ) c |= K(a, 128) << b;
       return c;
     }
     function ca(a, b) {
-      var c = na(a, b);
+      let c = na(a, b);
       return G(a) ? -c : c;
     }
     function cb(a, b, c, d) {
-      var e,
+      let e,
         f = 0;
       x(null != a);
       x(null != b);
@@ -240,7 +240,7 @@ function WebPDecoder(imageData) {
     function D(a, b) {
       x(0 <= b);
       if (!a.h && b <= Gd) {
-        var c = pb(a) & Hd[b];
+        let c = pb(a) & Hd[b];
         a.u += b;
         Vb(a);
         return c;
@@ -291,9 +291,9 @@ function WebPDecoder(imageData) {
       return na(a, 1);
     }
     function K(a, b) {
-      var c = a.Ca;
+      let c = a.Ca;
       0 > a.b && Qa(a);
-      var d = a.b,
+      let d = a.b,
         e = (c * b) >>> 8,
         f = (a.I >>> d > e) + 0;
       f ? ((c -= e), (a.I -= ((e + 1) << d) >>> 0)) : (c = e + 1);
@@ -320,7 +320,7 @@ function WebPDecoder(imageData) {
       return Ta(a, b) | (Ta(a, b + 2) << 16);
     }
     function Zb(a, b) {
-      var c = 1 << b;
+      let c = 1 << b;
       x(null != a);
       x(0 < b);
       a.X = V(c);
@@ -342,7 +342,7 @@ function WebPDecoder(imageData) {
     function bc(a, b, c, d) {
       x(null != c);
       x(null != d);
-      var e = c[0],
+      let e = c[0],
         f = d[0];
       0 == e && (e = (a * f + b / 2) / b);
       0 == f && (f = (b * e + a / 2) / a);
@@ -363,9 +363,9 @@ function WebPDecoder(imageData) {
     }
     function X(a, b) {
       self[b] = function(b, d, e, f, g, h, k) {
-        var c;
+        let c;
         for (c = 0; c < g; ++c) {
-          var m = self[a](h[k + c - 1], e, f + c);
+          let m = self[a](h[k + c - 1], e, f + c);
           h[k + c] = yb(b[d + c], m);
         }
       };
@@ -392,9 +392,9 @@ function WebPDecoder(imageData) {
       for (c = 0; c < e; ++c) f[g + c] = d = yb(a[b + c], d);
     }
     function Kd(a, b, c, d, e) {
-      var f;
+      let f;
       for (f = 0; f < c; ++f) {
-        var g = a[b + f],
+        let g = a[b + f],
           h = (g >> 8) & 255,
           k = g & 16711935,
           k = k + ((h << 16) + h),
@@ -408,9 +408,9 @@ function WebPDecoder(imageData) {
       b.ud = (a >> 16) & 255;
     }
     function Ld(a, b, c, d, e, f) {
-      var g;
+      let g;
       for (g = 0; g < d; ++g) {
-        var h = b[c + g],
+        let h = b[c + g],
           k = h >>> 8,
           l = h >>> 16,
           m = h,
@@ -428,13 +428,13 @@ function WebPDecoder(imageData) {
           for (n = 0; n < q; ++n) l[m++] = e(c[d(a[b++])]);
       };
       self[a] = function(a, b, h, k, l, m, n) {
-        var f = 8 >> a.b,
+        let f = 8 >> a.b,
           g = a.Ea,
           t = a.K[0],
           v = a.w;
         if (8 > f)
           for (a = (1 << a.b) - 1, v = (1 << f) - 1; b < h; ++b) {
-            var p = 0,
+            let p = 0,
               u;
             for (u = 0; u < g; ++u)
               u & a || (p = d(k[l++])), (m[n++] = e(t[p & v])), (p >>= f);
@@ -444,7 +444,7 @@ function WebPDecoder(imageData) {
     }
     function Md(a, b, c, d, e) {
       for (c = b + c; b < c; ) {
-        var f = a[b++];
+        let f = a[b++];
         d[e++] = (f >> 16) & 255;
         d[e++] = (f >> 8) & 255;
         d[e++] = (f >> 0) & 255;
@@ -452,7 +452,7 @@ function WebPDecoder(imageData) {
     }
     function Nd(a, b, c, d, e) {
       for (c = b + c; b < c; ) {
-        var f = a[b++];
+        let f = a[b++];
         d[e++] = (f >> 16) & 255;
         d[e++] = (f >> 8) & 255;
         d[e++] = (f >> 0) & 255;
@@ -461,7 +461,7 @@ function WebPDecoder(imageData) {
     }
     function Od(a, b, c, d, e) {
       for (c = b + c; b < c; ) {
-        var f = a[b++],
+        let f = a[b++],
           g = ((f >> 16) & 240) | ((f >> 12) & 15),
           f = ((f >> 0) & 240) | ((f >> 28) & 15);
         d[e++] = g;
@@ -470,7 +470,7 @@ function WebPDecoder(imageData) {
     }
     function Pd(a, b, c, d, e) {
       for (c = b + c; b < c; ) {
-        var f = a[b++],
+      let f = a[b++],
           g = ((f >> 16) & 248) | ((f >> 13) & 7),
           f = ((f >> 5) & 224) | ((f >> 3) & 31);
         d[e++] = g;
@@ -554,7 +554,7 @@ function WebPDecoder(imageData) {
       return a.T;
     }
     function Wd(a, b) {
-      var c = a.T,
+      let c = a.T,
         d = b.ba.f.RGBA,
         e = d.eb,
         f = d.fb + a.ka * d.A,
