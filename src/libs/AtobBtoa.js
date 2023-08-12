@@ -1,6 +1,6 @@
 import { globalObject } from "./globalObject.js";
 
-var atob, btoa;
+let atob, btoa;
 
 (function() {
   // @if MODULE_FORMAT!='cjs'
