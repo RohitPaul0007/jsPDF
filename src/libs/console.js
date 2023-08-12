@@ -25,7 +25,7 @@ function consoleError(str) {
     }
   }
 }
-export var console = {
+export let console = {
   log: consoleLog,
   warn: consoleWarn,
   error: consoleError
