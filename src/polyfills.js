@@ -19,7 +19,7 @@ import "./libs/Blob";
 
 import { globalObject as global } from "./libs/globalObject.js";
 
-var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+let b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
 if (typeof global.btoa === "undefined") {
   global.btoa = function(data) {
@@ -34,7 +34,7 @@ if (typeof global.btoa === "undefined") {
     //   example 1: base64_encode('Kevin van Zonneveld');
     //   returns 1: 'S2V2aW4gdmFuIFpvbm5ldmVsZA=='
 
-    var o1,
+    let o1,
       o2,
       o3,
       h1,
@@ -71,7 +71,7 @@ if (typeof global.btoa === "undefined") {
 
     enc = tmp_arr.join("");
 
-    var r = data.length % 3;
+    let r = data.length % 3;
 
     return (r ? enc.slice(0, r - 3) : enc) + "===".slice(r || 3);
   };
@@ -92,7 +92,7 @@ if (typeof global.atob === "undefined") {
     //   example 1: base64_decode('S2V2aW4gdmFuIFpvbm5ldmVsZA==');
     //   returns 1: 'Kevin van Zonneveld'
 
-    var o1,
+    let o1,
       o2,
       o3,
       h1,
