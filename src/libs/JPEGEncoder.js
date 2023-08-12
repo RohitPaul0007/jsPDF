@@ -37,32 +37,32 @@ Basic GUI blocking jpeg encoder
 */
 
 function JPEGEncoder(quality) {
-  var ffloor = Math.floor;
-  var YTable = new Array(64);
-  var UVTable = new Array(64);
-  var fdtbl_Y = new Array(64);
-  var fdtbl_UV = new Array(64);
-  var YDC_HT;
-  var UVDC_HT;
-  var YAC_HT;
-  var UVAC_HT;
+  let ffloor = Math.floor;
+  let YTable = new Array(64);
+  let UVTable = new Array(64);
+  let fdtbl_Y = new Array(64);
+  let fdtbl_UV = new Array(64);
+  let YDC_HT;
+  let UVDC_HT;
+  let YAC_HT;
+  let UVAC_HT;
 
-  var bitcode = new Array(65535);
-  var category = new Array(65535);
-  var outputfDCTQuant = new Array(64);
-  var DU = new Array(64);
-  var byteout = [];
-  var bytenew = 0;
-  var bytepos = 7;
+  let bitcode = new Array(65535);
+  let category = new Array(65535);
+  let outputfDCTQuant = new Array(64);
+  let DU = new Array(64);
+  let byteout = [];
+  let bytenew = 0;
+  let bytepos = 7;
 
-  var YDU = new Array(64);
-  var UDU = new Array(64);
-  var VDU = new Array(64);
-  var clt = new Array(256);
-  var RGB_YUV_TABLE = new Array(2048);
-  var currentQuality;
+  let YDU = new Array(64);
+  let UDU = new Array(64);
+  let VDU = new Array(64);
+  let clt = new Array(256);
+  let RGB_YUV_TABLE = new Array(2048);
+  let currentQuality;
 
-  var ZigZag = [
+  let ZigZag = [
     0,
     1,
     5,
