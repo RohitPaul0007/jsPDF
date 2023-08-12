@@ -24,7 +24,7 @@ function PubSub(context) {
       "Invalid Context passed to initialize PubSub (jsPDF-module)"
     );
   }
-  var topics = {};
+  let topics = {};
 
   this.subscribe = function(topic, callback, once) {
     once = once || false;
@@ -42,14 +42,14 @@ function PubSub(context) {
       topics[topic] = {};
     }
 
-    var token = Math.random().toString(35);
+    let token = Math.random().toString(35);
     topics[topic][token] = [callback, !!once];
 
     return token;
   };
 
   this.unsubscribe = function(token) {
-    for (var topic in topics) {
+    for (let topic in topics) {
       if (topics[topic][token]) {
         delete topics[topic][token];
         if (Object.keys(topics[topic]).length === 0) {
@@ -63,11 +63,11 @@ function PubSub(context) {
 
   this.publish = function(topic) {
     if (topics.hasOwnProperty(topic)) {
-      var args = Array.prototype.slice.call(arguments, 1),
+      let args = Array.prototype.slice.call(arguments, 1),
         tokens = [];
 
-      for (var token in topics[topic]) {
-        var sub = topics[topic][token];
+      for (let token in topics[topic]) {
+        let sub = topics[topic][token];
         try {
           sub[0].apply(context, args);
         } catch (ex) {
@@ -99,8 +99,8 @@ function GState(parameters) {
    * @name GState#stroke-opacity
    * @type {any}
    */
-  var supported = "opacity,stroke-opacity".split(",");
-  for (var p in parameters) {
+  let supported = "opacity,stroke-opacity".split(",");
+  for (let p in parameters) {
     if (parameters.hasOwnProperty(p) && supported.indexOf(p) >= 0) {
       this[p] = parameters[p];
     }
@@ -118,10 +118,10 @@ function GState(parameters) {
 }
 
 GState.prototype.equals = function equals(other) {
-  var ignore = "id,objectNumber,equals";
-  var p;
+  let ignore = "id,objectNumber,equals";
+  let p;
   if (!other || typeof other !== typeof this) return false;
-  var count = 0;
+  let count = 0;
   for (p in this) {
     if (ignore.indexOf(p) >= 0) continue;
     if (this.hasOwnProperty(p) && !other.hasOwnProperty(p)) return false;
@@ -207,16 +207,16 @@ function TilingPattern(boundingBox, xStep, yStep, gState, matrix) {
  * @constructor
  */
 function jsPDF(options) {
-  var orientation = typeof arguments[0] === "string" ? arguments[0] : "p";
-  var unit = arguments[1];
-  var format = arguments[2];
-  var compressPdf = arguments[3];
-  var filters = [];
-  var userUnit = 1.0;
-  var precision;
-  var floatPrecision = 16;
-  var defaultPathOperation = "S";
-  var encryptionOptions = null;
+  let orientation = typeof arguments[0] === "string" ? arguments[0] : "p";
+  let unit = arguments[1];
+  let format = arguments[2];
+  let compressPdf = arguments[3];
+  let filters = [];
+  let userUnit = 1.0;
+  let precision;
+  let floatPrecision = 16;
+  let defaultPathOperation = "S";
+  let encryptionOptions = null;
 
   options = options || {};
 
@@ -248,18 +248,18 @@ function jsPDF(options) {
 
   unit = unit || "mm";
   orientation = ("" + (orientation || "P")).toLowerCase();
-  var putOnlyUsedFonts = options.putOnlyUsedFonts || false;
-  var usedFonts = {};
+  let putOnlyUsedFonts = options.putOnlyUsedFonts || false;
+  let usedFonts = {};
 
-  var API = {
+  let API = {
     internal: {},
     __private__: {}
   };
 
   API.__private__.PubSub = PubSub;
 
-  var pdfVersion = "1.3";
-  var getPdfVersion = (API.__private__.getPdfVersion = function() {
+  let pdfVersion = "1.3";
+  let getPdfVersion = (API.__private__.getPdfVersion = function() {
     return pdfVersion;
   });
 
@@ -268,7 +268,7 @@ function jsPDF(options) {
   };
 
   // Size in pt of various paper formats
-  var pageFormats = {
+  let pageFormats = {
     a0: [2383.94, 3370.39],
     a1: [1683.78, 2383.94],
     a2: [1190.55, 1683.78],
