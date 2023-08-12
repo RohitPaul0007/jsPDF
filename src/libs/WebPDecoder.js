@@ -26,8 +26,8 @@ function WebPDecoder(imageData) {
    * Author: Dominik Homberger (dominik.homberger@gmail.com)
    */
 
-  var self = this;
-  var UpsampleRgbLinePair,
+  let self = this;
+  let UpsampleRgbLinePair,
     UpsampleBgrLinePair,
     UpsampleRgbaLinePair,
     UpsampleBgraLinePair,
@@ -40,53 +40,53 @@ function WebPDecoder(imageData) {
     if (!F) throw Error("assert :P");
   }
   function fa(F, L, J) {
-    for (var H = 0; 4 > H; H++) if (F[L + H] != J.charCodeAt(H)) return !0;
+    for (let H = 0; 4 > H; H++) if (F[L + H] != J.charCodeAt(H)) return !0;
     return !1;
   }
   function I(F, L, J, H, Z) {
-    for (var O = 0; O < Z; O++) F[L + O] = J[H + O];
+    for (let O = 0; O < Z; O++) F[L + O] = J[H + O];
   }
   function M(F, L, J, H) {
-    for (var Z = 0; Z < H; Z++) F[L + Z] = J;
+    for (let Z = 0; Z < H; Z++) F[L + Z] = J;
   }
   function V(F) {
     return new Int32Array(F);
   }
   function wa(F, L) {
-    for (var J = [], H = 0; H < F; H++) J.push(new L());
+    for (let J = [], H = 0; H < F; H++) J.push(new L());
     return J;
   }
   function wb() {
     function F(J, H, Z) {
-      for (var O = Z[H], L = 0; L < O; L++) {
+      for (let O = Z[H], L = 0; L < O; L++) {
         J.push(Z.length > H + 1 ? [] : 0);
         if (Z.length < H + 1) break;
         F(J[L], H + 1, Z);
       }
     }
-    var L = [];
+    let L = [];
     F(L, 0, [3, 11]);
     return L;
   }
   function Ed(F, L) {
     function J(H, O, F) {
-      for (var Z = F[O], ma = 0; ma < Z; ma++) {
+      for (let Z = F[O], ma = 0; ma < Z; ma++) {
         H.push(F.length > O + 1 ? [] : new L());
         if (F.length < O + 1) break;
         J(H[ma], O + 1, F);
       }
     }
-    var H = [];
+    let H = [];
     J(H, 0, F);
     return H;
   }
-  var _WebPDecoder = function() {
-    var self = this;
+  let _WebPDecoder = function() {
+    let self = this;
     function F() {
       V(55);
     }
     function L(a, b) {
-      for (var c = (1 << (b - 1)) >>> 0; a & c; ) c >>>= 1;
+      for (let c = (1 << (b - 1)) >>> 0; a & c; ) c >>>= 1;
       return c ? (a & (c - 1)) + c : a;
     }
     function J(a, b, c, d, e) {
@@ -95,7 +95,7 @@ function WebPDecoder(imageData) {
       while (0 < d);
     }
     function H(a, b, c, d, e, f) {
-      var g = b,
+      let g = b,
         h = 1 << c,
         k,
         l,
@@ -118,7 +118,7 @@ function WebPDecoder(imageData) {
       for (l = 0; l < e; ++l) (k = d[l]), 0 < d[l] && (f[n[k]++] = l);
       if (1 == n[15])
         return (d = new O()), (d.g = 0), (d.value = f[0]), J(a, g, 1, h, d), h;
-      var r = -1,
+      let r = -1,
         q = h - 1,
         t = 0,
         v = 1,
@@ -205,11 +205,11 @@ function WebPDecoder(imageData) {
       Qa(a);
     }
     function na(a, b) {
-      for (var c = 0; 0 < b--; ) c |= K(a, 128) << b;
+      for (let c = 0; 0 < b--; ) c |= K(a, 128) << b;
       return c;
     }
     function ca(a, b) {
-      var c = na(a, b);
+      let c = na(a, b);
       return G(a) ? -c : c;
     }
     function cb(a, b, c, d) {
@@ -291,9 +291,9 @@ function WebPDecoder(imageData) {
       return na(a, 1);
     }
     function K(a, b) {
-      var c = a.Ca;
+      let c = a.Ca;
       0 > a.b && Qa(a);
-      var d = a.b,
+      let d = a.b,
         e = (c * b) >>> 8,
         f = (a.I >>> d > e) + 0;
       f ? ((c -= e), (a.I -= ((e + 1) << d) >>> 0)) : (c = e + 1);
