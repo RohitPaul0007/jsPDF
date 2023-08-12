@@ -28,7 +28,7 @@ import { jsPDF } from "../jspdf.js";
    * Based on:
    * https://github.com/mathiasbynens/unicode-8.0.0
    */
-  var bidiUnicodeTypes = [
+  let bidiUnicodeTypes = [
     "BN",
     "BN",
     "BN",
@@ -2107,9 +2107,9 @@ import { jsPDF } from "../jspdf.js";
    */
 
   jsPDF.__bidiEngine__ = jsPDF.prototype.__bidiEngine__ = function(options) {
-    var _UNICODE_TYPES = _bidiUnicodeTypes;
+    let _UNICODE_TYPES = _bidiUnicodeTypes;
 
-    var _STATE_TABLE_LTR = [
+    let _STATE_TABLE_LTR = [
       [0, 3, 0, 1, 0, 0, 0],
       [0, 3, 0, 1, 2, 2, 0],
       [0, 3, 0, 0x11, 2, 0, 1],
@@ -2118,16 +2118,16 @@ import { jsPDF } from "../jspdf.js";
       [0, 3, 5, 5, 4, 2, 0]
     ];
 
-    var _STATE_TABLE_RTL = [
+    let _STATE_TABLE_RTL = [
       [2, 0, 1, 1, 0, 1, 0],
       [2, 0, 1, 1, 0, 2, 0],
       [2, 0, 2, 1, 3, 2, 0],
       [2, 0, 2, 0x21, 3, 1, 1]
     ];
 
-    var _TYPE_NAMES_MAP = { L: 0, R: 1, EN: 2, AN: 3, N: 4, B: 5, S: 6 };
+    let _TYPE_NAMES_MAP = { L: 0, R: 1, EN: 2, AN: 3, N: 4, B: 5, S: 6 };
 
-    var _UNICODE_RANGES_MAP = {
+    let _UNICODE_RANGES_MAP = {
       0: 0,
       5: 1,
       6: 2,
@@ -2138,7 +2138,7 @@ import { jsPDF } from "../jspdf.js";
       0xff: 7
     };
 
-    var _SWAP_TABLE = [
+    let _SWAP_TABLE = [
       "\u0028",
       "\u0029",
       "\u0028",
@@ -2186,11 +2186,11 @@ import { jsPDF } from "../jspdf.js";
       "\uFE64"
     ];
 
-    var _LTR_RANGES_REG_EXPR = new RegExp(
+    let _LTR_RANGES_REG_EXPR = new RegExp(
       /^([1-4|9]|1[0-9]|2[0-9]|3[0168]|4[04589]|5[012]|7[78]|159|16[0-9]|17[0-2]|21[569]|22[03489]|250)$/
     );
 
-    var _lastArabic = false,
+    let _lastArabic = false,
       _hasUbatAl,
       _hasUbatB,
       _hasUbatS,
@@ -2205,9 +2205,9 @@ import { jsPDF } from "../jspdf.js";
 
     this.__bidiEngine__ = {};
 
-    var _init = function(text, sourceToTargetMap) {
+    let _init = function(text, sourceToTargetMap) {
       if (sourceToTargetMap) {
-        for (var i = 0; i < text.length; i++) {
+        for (let i = 0; i < text.length; i++) {
           sourceToTargetMap[i] = i;
         }
       }
@@ -2221,8 +2221,8 @@ import { jsPDF } from "../jspdf.js";
 
     // for reference see 3.2 in http://unicode.org/reports/tr9/
     //
-    var _getCharType = function(ch) {
-      var charCode = ch.charCodeAt(),
+    let _getCharType = function(ch) {
+      let charCode = ch.charCodeAt(),
         range = charCode >> 8,
         rangeIdx = _UNICODE_RANGES_MAP[range];
 
@@ -2240,8 +2240,8 @@ import { jsPDF } from "../jspdf.js";
       return "N"; //undefined type, mark as neutral
     };
 
-    var _isContextualDirRtl = function(text) {
-      for (var i = 0, charType; i < text.length; i++) {
+    let _isContextualDirRtl = function(text) {
+      for (let i = 0, charType; i < text.length; i++) {
         charType = _getCharType(text.charAt(i));
         if (charType === "L") {
           return false;
@@ -2254,8 +2254,8 @@ import { jsPDF } from "../jspdf.js";
 
     // for reference see 3.3.4 & 3.3.5 in http://unicode.org/reports/tr9/
     //
-    var _resolveCharType = function(chars, types, resolvedTypes, index) {
-      var cType = types[index],
+    let _resolveCharType = function(chars, types, resolvedTypes, index) {
+      let cType = types[index],
         wType,
         nType,
         i,
@@ -2338,8 +2338,8 @@ import { jsPDF } from "../jspdf.js";
               i++;
             }
             if (i < len) {
-              var c = chars[index];
-              var rtlCandidate = (c >= 0x0591 && c <= 0x08ff) || c === 0xfb1e;
+              let c = chars[index];
+              let rtlCandidate = (c >= 0x0591 && c <= 0x08ff) || c === 0xfb1e;
               wType = types[i];
               if (rtlCandidate && (wType === "R" || wType === "AL")) {
                 cType = "R";
@@ -2379,11 +2379,11 @@ import { jsPDF } from "../jspdf.js";
       return cType;
     };
 
-    var _handleUbatS = function(types, levels, length) {
-      for (var i = 0; i < length; i++) {
+    let _handleUbatS = function(types, levels, length) {
+      for (let i = 0; i < length; i++) {
         if (types[i] === "S") {
           levels[i] = _dir;
-          for (var j = i - 1; j >= 0; j--) {
+          for (let j = i - 1; j >= 0; j--) {
             if (types[j] === "WS") {
               levels[j] = _dir;
             } else {
@@ -2394,8 +2394,8 @@ import { jsPDF } from "../jspdf.js";
       }
     };
 
-    var _invertString = function(text, sourceToTargetMap, levels) {
-      var charArray = text.split("");
+    let _invertString = function(text, sourceToTargetMap, levels) {
+      let charArray = text.split("");
       if (levels) {
         _computeLevels(charArray, levels, { hiLevel: _dir });
       }
@@ -2406,8 +2406,8 @@ import { jsPDF } from "../jspdf.js";
 
     // For reference see 3.3 in http://unicode.org/reports/tr9/
     //
-    var _computeLevels = function(chars, levels, params) {
-      var action,
+    let _computeLevels = function(chars, levels, params) {
+      let action,
         condition,
         i,
         index,
@@ -2474,7 +2474,7 @@ import { jsPDF } from "../jspdf.js";
 
     // for reference see 3.4 in http://unicode.org/reports/tr9/
     //
-    var _invertByLevel = function(
+    let _invertByLevel = function(
       level,
       charArray,
       sourceToTargetMap,
@@ -2489,7 +2489,7 @@ import { jsPDF } from "../jspdf.js";
         sourceToTargetMap && sourceToTargetMap.reverse();
         return;
       }
-      var ch,
+      let ch,
         high,
         end,
         low,
@@ -2520,9 +2520,9 @@ import { jsPDF } from "../jspdf.js";
 
     // for reference see 7 & BD16 in http://unicode.org/reports/tr9/
     //
-    var _symmetricSwap = function(charArray, levels, params) {
+    let _symmetricSwap = function(charArray, levels, params) {
       if (params.hiLevel !== 0 && _isSymmetricSwapping) {
-        for (var i = 0, index; i < charArray.length; i++) {
+        for (let i = 0, index; i < charArray.length; i++) {
           if (levels[i] === 1) {
             index = _SWAP_TABLE.indexOf(charArray[i]);
             if (index >= 0) {
@@ -2533,8 +2533,8 @@ import { jsPDF } from "../jspdf.js";
       }
     };
 
-    var _reorder = function(text, sourceToTargetMap, levels) {
-      var charArray = text.split(""),
+    let _reorder = function(text, sourceToTargetMap, levels) {
+      let charArray = text.split(""),
         params = { hiLevel: _dir };
 
       if (!levels) {
@@ -2599,7 +2599,7 @@ import { jsPDF } from "../jspdf.js";
         text = _invertString(text, sourceToTargetMap);
       } else if (!_isInVisual && !_isOutVisual && _isInRtl ^ _isOutRtl) {
         // LRTL->LLTR, LLTR->LRTL
-        var isSymmetricSwappingOrig = _isSymmetricSwapping;
+        let isSymmetricSwappingOrig = _isSymmetricSwapping;
         if (_isInRtl) {
           //LRTL->LLTR
           _dir = DIR_RTL;
@@ -2648,18 +2648,18 @@ import { jsPDF } from "../jspdf.js";
     return this.__bidiEngine__;
   };
 
-  var _bidiUnicodeTypes = bidiUnicodeTypes;
+  let _bidiUnicodeTypes = bidiUnicodeTypes;
 
-  var bidiEngine = new jsPDF.__bidiEngine__({ isInputVisual: true });
+  let bidiEngine = new jsPDF.__bidiEngine__({ isInputVisual: true });
 
-  var bidiEngineFunction = function(args) {
-    var text = args.text;
-    var x = args.x;
-    var y = args.y;
-    var options = args.options || {};
-    var mutex = args.mutex || {};
-    var lang = options.lang;
-    var tmpText = [];
+  let bidiEngineFunction = function(args) {
+    let text = args.text;
+    let x = args.x;
+    let y = args.y;
+    let options = args.options || {};
+    let mutex = args.mutex || {};
+    let lang = options.lang;
+    let tmpText = [];
 
     options.isInputVisual =
       typeof options.isInputVisual === "boolean" ? options.isInputVisual : true;
