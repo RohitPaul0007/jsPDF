@@ -12,7 +12,7 @@
 
 import { globalObject as global } from "./globalObject.js";
 
-var BlobBuilder =
+let BlobBuilder =
   global.BlobBuilder ||
   global.WebKitBlobBuilder ||
   global.MSBlobBuilder ||
@@ -27,14 +27,14 @@ global.URL =
     return a;
   };
 
-var origBlob = global.Blob;
-var createObjectURL = URL.createObjectURL;
-var revokeObjectURL = URL.revokeObjectURL;
-var strTag = global.Symbol && global.Symbol.toStringTag;
-var blobSupported = false;
-var blobSupportsArrayBufferView = false;
-var arrayBufferSupported = !!global.ArrayBuffer;
-var blobBuilderSupported =
+let origBlob = global.Blob;
+let createObjectURL = URL.createObjectURL;
+let revokeObjectURL = URL.revokeObjectURL;
+let strTag = global.Symbol && global.Symbol.toStringTag;
+let blobSupported = false;
+let blobSupportsArrayBufferView = false;
+let arrayBufferSupported = !!global.ArrayBuffer;
+let blobBuilderSupported =
   BlobBuilder && BlobBuilder.prototype.append && BlobBuilder.prototype.getBlob;
 
 try {
