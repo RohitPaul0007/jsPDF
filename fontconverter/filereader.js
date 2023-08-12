@@ -7,13 +7,13 @@ See http://github.com/bgrins/filereader.js for documentation.
 
 (function(window, document) {
 
-    var FileReader = window.FileReader;
-    var FileReaderSyncSupport = false;
-    var workerScript = "self.addEventListener('message', function(e) { var data=e.data; try { var reader = new FileReaderSync; postMessage({ result: reader[data.readAs](data.file), extra: data.extra, file: data.file})} catch(e){ postMessage({ result:'error', extra:data.extra, file:data.file}); } }, false);";
-    var syncDetectionScript = "onmessage = function(e) { postMessage(!!FileReaderSync); };";
-    var fileReaderEvents = ['loadstart', 'progress', 'load', 'abort', 'error', 'loadend'];
-    var sync = false;
-    var FileReaderJS = window.FileReaderJS = {
+    let FileReader = window.FileReader;
+    let FileReaderSyncSupport = false;
+    let workerScript = "self.addEventListener('message', function(e) { var data=e.data; try { var reader = new FileReaderSync; postMessage({ result: reader[data.readAs](data.file), extra: data.extra, file: data.file})} catch(e){ postMessage({ result:'error', extra:data.extra, file:data.file}); } }, false);";
+    let syncDetectionScript = "onmessage = function(e) { postMessage(!!FileReaderSync); };";
+    let fileReaderEvents = ['loadstart', 'progress', 'load', 'abort', 'error', 'loadend'];
+    let sync = false;
+    let FileReaderJS = window.FileReaderJS = {
         enabled: false,
         setupInput: setupInput,
         setupDrop: setupDrop,
@@ -78,16 +78,16 @@ See http://github.com/bgrins/filereader.js for documentation.
 
     // makeWorker is a little wrapper for generating web workers from strings
     function makeWorker(script) {
-        var URL = window.URL || window.webkitURL;
-        var Blob = window.Blob;
-        var Worker = window.Worker;
+        let URL = window.URL || window.webkitURL;
+        let Blob = window.Blob;
+        let Worker = window.Worker;
 
         if (!URL || !Blob || !Worker || !script) {
             return null;
         }
 
-        var blob = new Blob([script]);
-        var worker = new Worker(URL.createObjectURL(blob));
+        let blob = new Blob([script]);
+        let worker = new Worker(URL.createObjectURL(blob));
         return worker;
     }
 
@@ -97,24 +97,24 @@ See http://github.com/bgrins/filereader.js for documentation.
         if (!FileReaderJS.enabled) {
             return;
         }
-        var instanceOptions = extend(extend({}, FileReaderJS.opts), opts);
+        let instanceOptions = extend(extend({}, FileReaderJS.opts), opts);
 
         element.addEventListener("paste", onpaste, false);
 
         function onpaste(e) {
-            var files = [];
-            var clipboardData = e.clipboardData || {};
-            var items = clipboardData.items || [];
+            let files = [];
+            let clipboardData = e.clipboardData || {};
+            let items = clipboardData.items || [];
 
-            for (var i = 0; i < items.length; i++) {
-                var file = items[i].getAsFile();
+            for (let i = 0; i < items.length; i++) {
+                let file = items[i].getAsFile();
 
                 if (file) {
 
                     // Create a fake file name for images from clipboard, since this data doesn't get sent
-                    var matches = new RegExp("/\(.*\)").exec(file.type);
+                    let matches = new RegExp("/\(.*\)").exec(file.type);
                     if (!file.name && matches) {
-                        var extension = matches[1];
+                        let extension = matches[1];
                         file.name = "clipboard" + i + "." + extension;
                     }
 
