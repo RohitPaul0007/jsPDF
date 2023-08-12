@@ -1,4 +1,4 @@
-/** @license
+/* @license
  *
  * jsPDF - PDF Document creation from JavaScript
  * Version ${data.versionID} Built on ${data.builtOn}
