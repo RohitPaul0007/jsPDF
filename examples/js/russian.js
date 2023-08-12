@@ -1,4 +1,4 @@
-var doc = new jsPDF();
+let doc = new jsPDF();
 doc.addFont("test/reference/PTSans.ttf", "PTSans", "normal");
 
 doc.setFont("PTSans"); // set font
