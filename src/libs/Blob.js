@@ -12,7 +12,7 @@
 
 import { globalObject as global } from "./globalObject.js";
 
-var BlobBuilder =
+let BlobBuilder =
   global.BlobBuilder ||
   global.WebKitBlobBuilder ||
   global.MSBlobBuilder ||
@@ -27,14 +27,14 @@ global.URL =
     return a;
   };
 
-var origBlob = global.Blob;
-var createObjectURL = URL.createObjectURL;
-var revokeObjectURL = URL.revokeObjectURL;
-var strTag = global.Symbol && global.Symbol.toStringTag;
-var blobSupported = false;
-var blobSupportsArrayBufferView = false;
-var arrayBufferSupported = !!global.ArrayBuffer;
-var blobBuilderSupported =
+let origBlob = global.Blob;
+let createObjectURL = URL.createObjectURL;
+let revokeObjectURL = URL.revokeObjectURL;
+let strTag = global.Symbol && global.Symbol.toStringTag;
+let blobSupported = false;
+let blobSupportsArrayBufferView = false;
+let arrayBufferSupported = !!global.ArrayBuffer;
+let blobBuilderSupported =
   BlobBuilder && BlobBuilder.prototype.append && BlobBuilder.prototype.getBlob;
 
 try {
@@ -54,12 +54,12 @@ try {
 function mapArrayBufferViews(ary) {
   return ary.map(function(chunk) {
     if (chunk.buffer instanceof ArrayBuffer) {
-      var buf = chunk.buffer;
+      let buf = chunk.buffer;
 
       // if this is a subarray, make a copy so we only
       // include the subarray region from the underlying buffer
       if (chunk.byteLength !== buf.byteLength) {
-        var copy = new Uint8Array(chunk.byteLength);
+        let copy = new Uint8Array(chunk.byteLength);
         copy.set(new Uint8Array(buf, chunk.byteOffset, chunk.byteLength));
         buf = copy.buffer;
       }
@@ -74,7 +74,7 @@ function mapArrayBufferViews(ary) {
 function BlobBuilderConstructor(ary, options) {
   options = options || {};
 
-  var bb = new BlobBuilder();
+  let bb = new BlobBuilder();
   mapArrayBufferViews(ary).forEach(function(part) {
     bb.append(part);
   });
@@ -93,9 +93,9 @@ if (global.Blob) {
 
 function FakeBlobBuilder() {
   function toUTF8Array(str) {
-    var utf8 = [];
-    for (var i = 0; i < str.length; i++) {
-      var charcode = str.charCodeAt(i);
+    let utf8 = [];
+    for (let i = 0; i < str.length; i++) {
+      let charcode = str.charCodeAt(i);
       if (charcode < 0x80) utf8.push(charcode);
       else if (charcode < 0x800) {
         utf8.push(0xc0 | (charcode >> 6), 0x80 | (charcode & 0x3f));
