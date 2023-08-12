@@ -6,13 +6,13 @@ function toLookup(arr) {
   }, {});
 }
 
-var fontStyleOrder = {
+let fontStyleOrder = {
   italic: ["italic", "oblique", "normal"],
   oblique: ["oblique", "italic", "normal"],
   normal: ["normal", "oblique", "italic"]
 };
 
-var fontStretchOrder = [
+let fontStretchOrder = [
   "ultra-condensed",
   "extra-condensed",
   "condensed",
@@ -26,10 +26,10 @@ var fontStretchOrder = [
 
 // For a given font-stretch value, we need to know where to start our search
 // from in the fontStretchOrder list.
-var fontStretchLookup = toLookup(fontStretchOrder);
+let fontStretchLookup = toLookup(fontStretchOrder);
 
-var fontWeights = [100, 200, 300, 400, 500, 600, 700, 800, 900];
-var fontWeightsLookup = toLookup(fontWeights);
+let fontWeights = [100, 200, 300, 400, 500, 600, 700, 800, 900];
+let fontWeightsLookup = toLookup(fontWeights);
 
 function normalizeFontStretch(stretch) {
   stretch = stretch || "normal";
@@ -68,11 +68,11 @@ function normalizeFontWeight(weight) {
 }
 
 export function normalizeFontFace(fontFace) {
-  var family = fontFace.family.replace(/"|'/g, "").toLowerCase();
+  let family = fontFace.family.replace(/"|'/g, "").toLowerCase();
 
-  var style = normalizeFontStyle(fontFace.style);
-  var weight = normalizeFontWeight(fontFace.weight);
-  var stretch = normalizeFontStretch(fontFace.stretch);
+  let style = normalizeFontStyle(fontFace.style);
+  let weight = normalizeFontWeight(fontFace.weight);
+  let stretch = normalizeFontStretch(fontFace.stretch);
 
   return {
     family: family,
