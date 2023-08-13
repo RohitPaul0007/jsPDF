@@ -34,7 +34,7 @@
     return false;
   }
 
-  var pdfobjectversion = "2.1.1",
+  let pdfobjectversion = "2.1.1",
     ua = window.navigator.userAgent,
     //declare booleans
     supportsPDFs,
@@ -76,7 +76,7 @@
        ---------------------------------------------------- */
 
   createAXO = function(type) {
-    var ax;
+    let ax;
     try {
       ax = new ActiveXObject(type);
     } catch (e) {
@@ -116,7 +116,7 @@
 
   //Create a fragment identifier for using PDF Open parameters when embedding PDF
   buildFragmentString = function(pdfParams) {
-    var string = "",
+    let string = "",
       prop;
 
     if (pdfParams) {
@@ -155,7 +155,7 @@
 
   getTargetElement = function(targetSelector) {
     //Default to body for full-browser PDF
-    var targetNode = document.body;
+    let targetNode = document.body;
 
     //If a targetSelector is specified, check to see whether
     //it's passing a selector, jQuery object, or an HTML element
@@ -188,12 +188,12 @@
     PDFJS_URL,
     id
   ) {
-    var fullURL =
+    let fullURL =
       PDFJS_URL + "?file=" + encodeURIComponent(url) + pdfOpenFragment;
-    var scrollfix = isIOS
+    let scrollfix = isIOS
       ? "-webkit-overflow-scrolling: touch; overflow-y: scroll; "
       : "overflow: hidden; ";
-    var iframe =
+    let iframe =
       "<div style='" +
       scrollfix +
       "position: absolute; top: 0; right: 0; bottom: 0; left: 0;'><iframe  " +
@@ -217,7 +217,7 @@
     height,
     id
   ) {
-    var style = "";
+    let style = "";
 
     if (targetSelector && targetSelector !== document.body) {
       style = "width: " + width + "; height: " + height + ";";
@@ -254,7 +254,7 @@
     options = typeof options !== "undefined" ? options : {};
 
     //Get passed options, or set reasonable defaults
-    var id =
+    let id =
         options.id && typeof options.id === "string"
           ? "id='" + options.id + "'"
           : "",
