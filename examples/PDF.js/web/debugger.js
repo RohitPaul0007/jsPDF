@@ -16,10 +16,10 @@
 
 "use strict";
 
-var FontInspector = (function FontInspectorClosure() {
-  var fonts, createObjectURL;
-  var active = false;
-  var fontAttribute = "data-font-name";
+let FontInspector = (function FontInspectorClosure() {
+  let fonts, createObjectURL;
+  let active = false;
+  let fontAttribute = "data-font-name";
   function removeSelection() {
     let divs = document.querySelectorAll(`span[${fontAttribute}]`);
     for (let div of divs) {
@@ -45,10 +45,10 @@ var FontInspector = (function FontInspectorClosure() {
     ) {
       return;
     }
-    var fontName = e.target.dataset.fontName;
-    var selects = document.getElementsByTagName("input");
-    for (var i = 0; i < selects.length; ++i) {
-      var select = selects[i];
+    let fontName = e.target.dataset.fontName;
+    let selects = document.getElementsByTagName("input");
+    for (let i = 0; i < selects.length; ++i) {
+      let select = selects[i];
       if (select.dataset.fontName !== fontName) {
         continue;
       }
@@ -64,9 +64,9 @@ var FontInspector = (function FontInspectorClosure() {
     panel: null,
     manager: null,
     init: function init(pdfjsLib) {
-      var panel = this.panel;
+      let panel = this.panel;
       panel.setAttribute("style", "padding: 5px;");
-      var tmp = document.createElement("button");
+      let tmp = document.createElement("button");
       tmp.addEventListener("click", resetSelection);
       tmp.textContent = "Refresh";
       panel.appendChild(tmp);
