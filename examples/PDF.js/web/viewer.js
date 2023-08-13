@@ -23,7 +23,7 @@
 /******/ (function(modules) {
   // webpackBootstrap
   /******/ // The module cache
-  /******/ var installedModules = {}; // The require function
+  /******/ let installedModules = {}; // The require function
   /******/
   /******/ /******/ function __webpack_require__(moduleId) {
     /******/
@@ -32,7 +32,7 @@
       /******/ return installedModules[moduleId].exports;
       /******/
     } // Create a new module (and put it into the cache)
-    /******/ /******/ var module = (installedModules[moduleId] = {
+    /******/ /******/ let module = (installedModules[moduleId] = {
       /******/ i: moduleId,
       /******/ l: false,
       /******/ exports: {}
@@ -92,14 +92,14 @@
       value.__esModule
     )
       return value;
-    /******/ var ns = Object.create(null);
+    /******/ let ns = Object.create(null);
     /******/ __webpack_require__.r(ns);
     /******/ Object.defineProperty(ns, "default", {
       enumerable: true,
       value: value
     });
     /******/ if (mode & 2 && typeof value != "string")
-      for (var key in value)
+      for (let key in value)
         __webpack_require__.d(
           ns,
           key,
@@ -112,7 +112,7 @@
   }; // getDefaultExport function for compatibility with non-harmony modules
   /******/
   /******/ /******/ __webpack_require__.n = function(module) {
-    /******/ var getter =
+    /******/ let getter =
       module && module.__esModule
         ? /******/ function getDefault() {
             return module["default"];
@@ -141,7 +141,7 @@
     /***/ function(module, exports, __webpack_require__) {
       "use strict";
 
-      var pdfjsWebApp, pdfjsWebAppOptions;
+      let pdfjsWebApp, pdfjsWebAppOptions;
       {
         pdfjsWebApp = __webpack_require__(1);
         pdfjsWebAppOptions = __webpack_require__(7);
@@ -291,10 +291,10 @@
       }
 
       function webViewerLoad() {
-        var config = getViewerConfiguration();
+        let config = getViewerConfiguration();
         window.PDFViewerApplication = pdfjsWebApp.PDFViewerApplication;
         window.PDFViewerApplicationOptions = pdfjsWebAppOptions.AppOptions;
-        var event = document.createEvent("CustomEvent");
+        let event = document.createEvent("CustomEvent");
         event.initCustomEvent("webviewerloaded", true, true, {});
         document.dispatchEvent(event);
         pdfjsWebApp.PDFViewerApplication.run(config);
