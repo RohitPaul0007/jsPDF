@@ -32,7 +32,7 @@
   return /******/ (function(modules) {
     // webpackBootstrap
     /******/ // The module cache
-    /******/ var installedModules = {}; // The require function
+    /******/ let installedModules = {}; // The require function
     /******/
     /******/ /******/ function __w_pdfjs_require__(moduleId) {
       /******/
@@ -41,7 +41,7 @@
         /******/ return installedModules[moduleId].exports;
         /******/
       } // Create a new module (and put it into the cache)
-      /******/ /******/ var module = (installedModules[moduleId] = {
+      /******/ /******/ let module = (installedModules[moduleId] = {
         /******/ i: moduleId,
         /******/ l: false,
         /******/ exports: {}
@@ -101,14 +101,14 @@
         value.__esModule
       )
         return value;
-      /******/ var ns = Object.create(null);
+      /******/ let ns = Object.create(null);
       /******/ __w_pdfjs_require__.r(ns);
       /******/ Object.defineProperty(ns, "default", {
         enumerable: true,
         value: value
       });
       /******/ if (mode & 2 && typeof value != "string")
-        for (var key in value)
+        for (let key in value)
           __w_pdfjs_require__.d(
             ns,
             key,
@@ -121,7 +121,7 @@
     }; // getDefaultExport function for compatibility with non-harmony modules
     /******/
     /******/ /******/ __w_pdfjs_require__.n = function(module) {
-      /******/ var getter =
+      /******/ let getter =
         module && module.__esModule
           ? /******/ function getDefault() {
               return module["default"];
@@ -150,38 +150,38 @@
       /***/ function(module, exports, __w_pdfjs_require__) {
         "use strict";
 
-        var pdfjsVersion = "2.2.93";
-        var pdfjsBuild = "9b5a937f";
+        let pdfjsVersion = "2.2.93";
+        let pdfjsBuild = "9b5a937f";
 
-        var pdfjsSharedUtil = __w_pdfjs_require__(1);
+        let pdfjsSharedUtil = __w_pdfjs_require__(1);
 
-        var pdfjsDisplayAPI = __w_pdfjs_require__(147);
+        let pdfjsDisplayAPI = __w_pdfjs_require__(147);
 
-        var pdfjsDisplayTextLayer = __w_pdfjs_require__(163);
+        let pdfjsDisplayTextLayer = __w_pdfjs_require__(163);
 
-        var pdfjsDisplayAnnotationLayer = __w_pdfjs_require__(164);
+        let pdfjsDisplayAnnotationLayer = __w_pdfjs_require__(164);
 
-        var pdfjsDisplayDisplayUtils = __w_pdfjs_require__(152);
+        let pdfjsDisplayDisplayUtils = __w_pdfjs_require__(152);
 
-        var pdfjsDisplaySVG = __w_pdfjs_require__(165);
+        let pdfjsDisplaySVG = __w_pdfjs_require__(165);
 
-        var pdfjsDisplayWorkerOptions = __w_pdfjs_require__(157);
+        let pdfjsDisplayWorkerOptions = __w_pdfjs_require__(157);
 
-        var pdfjsDisplayAPICompatibility = __w_pdfjs_require__(154);
+        let pdfjsDisplayAPICompatibility = __w_pdfjs_require__(154);
 
         {
-          var isNodeJS = __w_pdfjs_require__(4);
+          let isNodeJS = __w_pdfjs_require__(4);
 
           if (isNodeJS()) {
-            var PDFNodeStream = __w_pdfjs_require__(166).PDFNodeStream;
+            let PDFNodeStream = __w_pdfjs_require__(166).PDFNodeStream;
 
             pdfjsDisplayAPI.setPDFNetworkStreamFactory(function(params) {
               return new PDFNodeStream(params);
             });
           } else {
-            var PDFNetworkStream = __w_pdfjs_require__(169).PDFNetworkStream;
+            let PDFNetworkStream = __w_pdfjs_require__(169).PDFNetworkStream;
 
-            var PDFFetchStream;
+            let PDFFetchStream;
 
             if (pdfjsDisplayDisplayUtils.isFetchSupported()) {
               PDFFetchStream = __w_pdfjs_require__(170).PDFFetchStream;
@@ -297,9 +297,9 @@
 
         __w_pdfjs_require__(2);
 
-        var _streams_polyfill = __w_pdfjs_require__(143);
+        let _streams_polyfill = __w_pdfjs_require__(143);
 
-        var _url_polyfill = __w_pdfjs_require__(145);
+        let _url_polyfill = __w_pdfjs_require__(145);
 
         function _typeof(obj) {
           if (
