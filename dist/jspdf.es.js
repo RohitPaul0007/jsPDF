@@ -51,7 +51,7 @@
 import _typeof from '@babel/runtime/helpers/typeof';
 import { zlibSync, unzlibSync } from 'fflate';
 
-var globalObject = function () {
+let globalObject = function () {
   return "undefined" !== typeof window ? window : "undefined" !== typeof global ? global : "undefined" !== typeof self ? self : this;
 }();
 
@@ -81,7 +81,7 @@ function consoleError(str) {
   }
 }
 
-var console = {
+let console = {
   log: consoleLog,
   warn: consoleWarn,
   error: consoleError
@@ -108,7 +108,7 @@ function bom(blob, opts) {
 }
 
 function download(url, name, opts) {
-  var xhr = new XMLHttpRequest();
+  let xhr = new XMLHttpRequest();
   xhr.open("GET", url);
   xhr.responseType = "blob";
 
@@ -124,7 +124,7 @@ function download(url, name, opts) {
 }
 
 function corsEnabled(url) {
-  var xhr = new XMLHttpRequest(); // use sync to avoid popup blocker
+  let xhr = new XMLHttpRequest(); // use sync to avoid popup blocker
 
   xhr.open("HEAD", url, false);
 
@@ -146,13 +146,13 @@ function click(node) {
   }
 }
 
-var saveAs = globalObject.saveAs || ( // probably in some web worker
+let saveAs = globalObject.saveAs || ( // probably in some web worker
 (typeof window === "undefined" ? "undefined" : _typeof(window)) !== "object" || window !== globalObject ? function saveAs() {
   /* noop */
 } : // Use download attribute first if possible (#193 Lumia mobile) unless this is a native app
 typeof HTMLAnchorElement !== "undefined" && "download" in HTMLAnchorElement.prototype ? function saveAs(blob, name, opts) {
-  var URL = globalObject.URL || globalObject.webkitURL;
-  var a = document.createElement("a");
+  let URL = globalObject.URL || globalObject.webkitURL;
+  let a = document.createElement("a");
   name = name || blob.name || "download";
   a.download = name;
   a.rel = "noopener"; // tabnabbing
@@ -187,7 +187,7 @@ typeof HTMLAnchorElement !== "undefined" && "download" in HTMLAnchorElement.prot
     if (corsEnabled(blob)) {
       download(blob, name, opts);
     } else {
-      var a = document.createElement("a");
+      let a = document.createElement("a");
       a.href = blob;
       a.target = "_blank";
       setTimeout(function () {
@@ -208,18 +208,18 @@ function saveAs(blob, name, opts, popup) {
   }
 
   if (typeof blob === "string") return download(blob, name, opts);
-  var force = blob.type === "application/octet-stream";
+  let force = blob.type === "application/octet-stream";
 
-  var isSafari = /constructor/i.test(globalObject.HTMLElement) || globalObject.safari;
+  let isSafari = /constructor/i.test(globalObject.HTMLElement) || globalObject.safari;
 
-  var isChromeIOS = /CriOS\/[\d]+/.test(navigator.userAgent);
+  let isChromeIOS = /CriOS\/[\d]+/.test(navigator.userAgent);
 
   if ((isChromeIOS || force && isSafari) && (typeof FileReader === "undefined" ? "undefined" : _typeof(FileReader)) === "object") {
     // Safari doesn't allow downloading of blob URLs
-    var reader = new FileReader();
+    let reader = new FileReader();
 
     reader.onloadend = function () {
-      var url = reader.result;
+      let url = reader.result;
       url = isChromeIOS ? url : url.replace(/^data:[^;]*;/, "data:attachment/file;");
       if (popup) popup.location.href = url;else location = url;
       popup = null; // reverse-tabnabbing #460
@@ -227,8 +227,8 @@ function saveAs(blob, name, opts, popup) {
 
     reader.readAsDataURL(blob);
   } else {
-    var URL = globalObject.URL || globalObject.webkitURL;
-    var url = URL.createObjectURL(blob);
+    let URL = globalObject.URL || globalObject.webkitURL;
+    let url = URL.createObjectURL(blob);
     if (popup) popup.location = url;else location.href = url;
     popup = null; // reverse-tabnabbing #460
 
@@ -255,10 +255,10 @@ function RGBColor(color_string) {
 
   color_string = color_string.replace(/ /g, "");
   color_string = color_string.toLowerCase();
-  var channels; // before getting into regexps, try simple matches
+  let channels; // before getting into regexps, try simple matches
   // and overwrite the input
 
-  var simple_colors = {
+  let simple_colors = {
     aliceblue: "f0f8ff",
     antiquewhite: "faebd7",
     aqua: "00ffff",
